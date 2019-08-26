@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleImage: {fileID: 1061842957}
   TitleUI: {fileID: 2113443773}
-  changeSceneName: SampleScene
+  changeSceneName: TestMap
   loadingScene: Loading
 --- !u!1 &532075906
 GameObject:
