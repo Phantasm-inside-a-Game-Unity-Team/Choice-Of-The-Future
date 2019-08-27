@@ -1,4 +1,4 @@
-# 欢迎来到《幻想空奕行 ~ Choice of the Future》的源代码仓库。
+﻿# 欢迎来到《幻想空奕行 ~ Choice of the Future》的源代码仓库。
 
 # 这里就是项目文件夹，直接使用unity把这个文件夹打开就可以了，其中，Docs是开发档案，很多细则都写在里面了，可以随时观看。
 
@@ -23,6 +23,7 @@
 	https://www.liaoxuefeng.com/wiki/896043488029600/896827951938304（Git的使用）
 	https://www.jianshu.com/p/8c69d1021d98（多人协作开发Git）
 	源代码已经放在这里了：https://github.com/Phantasm-inside-a-Game-Unity-Team/Phantasm-inside-a-Game-Choice-of-the-Future
+	除此之外有什么不明白的地方请及时联系
 
 除此之外，还有项目的结构需要注意，各种文件的存放规则，文件命名的详细规则见Docs目录下的“工程目录.docx”文件
 
