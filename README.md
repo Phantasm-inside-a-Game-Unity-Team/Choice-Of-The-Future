@@ -31,4 +31,4 @@
 以上
 
 制作组人员：
-freesia  第十二类罗夏墨迹 一条归桥  Cailgun
+freesia  第十二类罗夏墨迹 一条归桥  Cailgun liboqiao
