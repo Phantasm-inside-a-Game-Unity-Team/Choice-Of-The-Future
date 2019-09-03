@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1370169322}
   - component: {fileID: 1370169323}
   m_Layer: 0
-  m_Name: icon
+  m_Name: iconOfNPCCanSpeak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -611,7 +611,8 @@ MonoBehaviour:
   characterRight: {fileID: 21300062, guid: 5296ff834de74134eab3c779490b969e, type: 3}
   characterUp: {fileID: 21300086, guid: 5296ff834de74134eab3c779490b969e, type: 3}
   characterDown: {fileID: 21300014, guid: 5296ff834de74134eab3c779490b969e, type: 3}
-  iconOfNPCCanSpeak: {fileID: 0}
+  distanceOfCanSpeak: 1.2
+  flagOfDialogBox: 0
   left: 0
   right: 0
   up: 0
