@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1BA1532D-F8A0-9B0A-A1A9-6604ADF8AD7D}</ProjectGuid>
+    <ProjectGuid>{1F4B6E6A-34ED-842B-6A07-685253A01868}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera.cs" />
+     <Compile Include="Assets\Scripts\DialogBox\DialogBox.cs" />
      <Compile Include="Assets\Scripts\Globle.cs" />
      <Compile Include="Assets\Scripts\label.cs" />
      <Compile Include="Assets\Scripts\Scenes\Loading\CharacterMovingManager.cs" />
@@ -62,19 +63,19 @@
      <Compile Include="Assets\Scripts\Scenes\Tltle\TitleImageManager.cs" />
      <Compile Include="Assets\Scripts\Scenes\Tltle\TitleUIManager.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/unity3d/2018.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -278,13 +279,13 @@
  <HintPath>E:/unity3d/2018.3.14f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>D:/Youxi/Phantasm inside a Game ~ Choice of the Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>D:/Youxi/Phantasm-inside-a-Game-Choice-of-the-Future/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>E:/unity3d/2018.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
