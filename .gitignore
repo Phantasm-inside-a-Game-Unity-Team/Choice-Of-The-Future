@@ -65,3 +65,7 @@ crashlytics-build.properties
 
 # IDE/Editor
 .vscode
+
+# Microsoft Office temporary file
+~$*.docx
+~$*.xlsx
