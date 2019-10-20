@@ -17,7 +17,7 @@ public class LoadingSceneManager : MonoBehaviour
     }
 
     void ChangeScene () {
-        // 开启携程
+        // 开启协程
         StartCoroutine(ChangeSceneAsync());
     }
 
