@@ -1,10 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Resources/Characters/Test.meta
-guid: d29d2ab3e2b379a4dad40b8cd2bb9fc5
+guid: e561bda89f84f974697852fb61b7157f
 folderAsset: yes
-=======
-guid: 73cf0f0eb44d3da4c898bbb877d66d94
->>>>>>> 053c3b12bc012d4699c68d43e8e9be314b9652dc:Assets/Scenes/CharacterWalk.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
