@@ -31,7 +31,7 @@ public class PlayerWalk : MonoBehaviour
         {
             playerAnimator.SetFloat("axisX", inputX);
             playerAnimator.SetFloat("axisY", inputY);
-            transform.Translate(inputX * Time.deltaTime*moveSpeed, inputY * Time.deltaTime*moveSpeed, 0);
+            transform.Translate(inputX * Time.deltaTime * moveSpeed, inputY * Time.deltaTime * moveSpeed, 0);
         }
     }
 }
