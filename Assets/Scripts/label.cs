@@ -52,7 +52,13 @@ public class label : MonoBehaviour
     public bool up = false;
     public bool down = false;
 
-/*------------label子的各种方法------------ */
+    // 人物移动键位设置
+    public KeyCode moveRight = KeyCode.D;
+    public KeyCode moveLeft = KeyCode.A;
+    public KeyCode moveUp = KeyCode.W;
+    public KeyCode moveDown = KeyCode.S;
+
+    /*------------label子的各种方法------------ */
 
     // Start is called before the first frame update
     void Start() {
@@ -69,7 +75,7 @@ public class label : MonoBehaviour
         // 判断按键是否按下的标志
         bool buttonIsPressed = false;
         // 按下D键，角色向右行走
-        if(Input.GetKey(KeyCode.D)) {
+        if(Input.GetKey(moveRight)) {
             // 调整动画器内的变量，使得动画状态变成WalkRight,注意顺序不能颠倒
             animator.SetBool("walkStop",false);
             animator.SetBool("walkContinue",true);
@@ -88,7 +94,7 @@ public class label : MonoBehaviour
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
         // 按下A键，角色向左行走
-        if(Input.GetKey(KeyCode.A)) {
+        if (Input.GetKey(moveLeft)) {
             // 调整动画器内的变量，使得动画状态变成WalkLeft，注意顺序不能颠倒
             animator.SetBool("walkStop",false);
             animator.SetBool("walkContinue",true);
@@ -108,7 +114,7 @@ public class label : MonoBehaviour
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
         // 按下W键，角色向上行走
-        if(Input.GetKey(KeyCode.W)) {
+        if(Input.GetKey(moveUp)) {
             // 调整动画器内的变量，使得动画状态变成WalkUp，注意顺序不能颠倒
             animator.SetBool("walkStop",false);
             animator.SetBool("walkContinue",true);
@@ -127,7 +133,7 @@ public class label : MonoBehaviour
             transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
         // 按下S键，角色向下行走
-        if(Input.GetKey(KeyCode.S)) {
+        if(Input.GetKey(moveDown)) {
             // 调整动画器内的变量，使得动画状态变成WalkDown，注意顺序不能颠倒
             animator.SetBool("walkStop",false);
             animator.SetBool("walkContinue",true);
