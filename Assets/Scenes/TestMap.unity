@@ -333,9 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f81e26af521d4c9f8ac8a2b00c4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   playerAnimator: {fileID: 307198141}
-  face: 1
+  rb: {fileID: 307198146}
 --- !u!50 &307198146
 Rigidbody2D:
   serializedVersion: 4
@@ -353,7 +353,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4

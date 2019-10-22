@@ -6,6 +6,7 @@ public class PlayerWalk : MonoBehaviour
 {
     public float moveSpeed;
     public Animator playerAnimator;
+    public Rigidbody2D rb;
     float inputX;
     float inputY;
     // Start is called before the first frame update
@@ -14,7 +15,7 @@ public class PlayerWalk : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         MoveCharacter();
     }
@@ -31,7 +32,7 @@ public class PlayerWalk : MonoBehaviour
         {
             playerAnimator.SetFloat("axisX", inputX);
             playerAnimator.SetFloat("axisY", inputY);
-            transform.Translate(inputX * Time.deltaTime * moveSpeed, inputY * Time.deltaTime * moveSpeed, 0);
         }
+        rb.velocity = new Vector2(inputX * moveSpeed, inputY * moveSpeed);
     }
 }
