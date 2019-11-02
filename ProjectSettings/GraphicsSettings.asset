@@ -58,3 +58,7 @@ GraphicsSettings:
   m_AlbedoSwatchInfos: []
   m_LightsUseLinearIntensity: 0
   m_LightsUseColorTemperature: 0
+<<<<<<< HEAD
+=======
+  m_LogWhenShaderIsCompiled: 0
+>>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
