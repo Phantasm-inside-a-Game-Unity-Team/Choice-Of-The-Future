@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class Camera_ : MonoBehaviour
 {
     // 摄像机是否跟随主角
     public bool ifCameraFollowPlayer = true;
