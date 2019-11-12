@@ -10,6 +10,8 @@ public class PlayerHUD : MonoBehaviour
      * 
      * 
      */
+    //残机机组
+    public List<Image> LifeMarks;
     //P点条总长度
     public Image powerValue;
     //P点条当前长度

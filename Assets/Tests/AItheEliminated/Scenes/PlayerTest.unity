@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.317
+  m_FillAmount: 0.592
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2571,6 +2571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204abe0895640cf43a6e301d6f92b94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LifeMarks: []
   powerValue: {fileID: 103379207}
   powerValue_Current: {fileID: 1225198776}
   powerValue_Shadow: {fileID: 562777452}
@@ -2911,6 +2912,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476796868}
   m_CullTransparentMesh: 0
+--- !u!1 &1495511620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5726236888790895996, guid: 4bec2c615eb97da4c97b6cb88db50449,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039192026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495511621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495511620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721795cfa785add4f8d732f681f96074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  playerAnimator: {fileID: 1495511624}
+  rb: {fileID: 1495511622}
+--- !u!50 &1495511622 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5726236888857762503, guid: 4bec2c615eb97da4c97b6cb88db50449,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039192026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1495511624 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5726236888857762488, guid: 4bec2c615eb97da4c97b6cb88db50449,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039192026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1503936651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,6 +3212,11 @@ PrefabInstance:
     - target: {fileID: 9208629280501810490, guid: 6f467a2afb44f01429da3ca82d79594f,
         type: 3}
       propertyPath: m_Name
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208629280501810490, guid: 6f467a2afb44f01429da3ca82d79594f,
+        type: 3}
+      propertyPath: m_TagString
       value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 9208629280501810488, guid: 6f467a2afb44f01429da3ca82d79594f,
@@ -3887,7 +3926,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5726236888857762500, guid: 4bec2c615eb97da4c97b6cb88db50449, type: 3}
+    - {fileID: 5726236888857762501, guid: 4bec2c615eb97da4c97b6cb88db50449, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4bec2c615eb97da4c97b6cb88db50449, type: 3}
 --- !u!1 &2048125420
 GameObject:
