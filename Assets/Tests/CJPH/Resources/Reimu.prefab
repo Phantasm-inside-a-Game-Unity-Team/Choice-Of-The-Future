@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f81e26af521d4c9f8ac8a2b00c4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 3
   playerAnimator: {fileID: 1959201614550432273}
   rb: {fileID: 1959201614550432277}
 --- !u!50 &1959201614550432277
@@ -151,6 +151,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005628735, y: 0.09097266}
+  m_Offset: {x: 0.005628735, y: 0.11737394}
   serializedVersion: 2
-  m_Radius: 0.13784027
+  m_Radius: 0.16424155
