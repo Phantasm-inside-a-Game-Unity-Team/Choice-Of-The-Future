@@ -71,6 +71,7 @@ public class DialogBox : MonoBehaviour
             // 获取主角的信息
             GameObject Player = GameObject.FindWithTag("Player");
             // 根据主角的相对位置判断NPC的朝向
+            //这里也应该用上龙骨动画
             Vector3 diff = Player.transform.position - transform.position;
             if (diff.x <= 0 && Mathf.Abs(diff.x) >= Mathf.Abs(diff.y))
             {

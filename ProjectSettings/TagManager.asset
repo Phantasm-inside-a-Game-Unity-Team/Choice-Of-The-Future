@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - NPC
+=======
+  - Manager
+>>>>>>> 10aed805da6aacfb6a0ea9dea6e541a6e83b7072
   layers:
   - Default
   - TransparentFX
