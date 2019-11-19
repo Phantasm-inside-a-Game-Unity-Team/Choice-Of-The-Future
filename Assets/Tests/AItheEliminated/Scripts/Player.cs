@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player
+public class Player:MonoBehaviour
 {
     /*
      *该类为玩家角色的类 
@@ -28,7 +28,18 @@ public class Player
     //当前蓝点数
     public float point_Current;
 
+    private void Start()
+    {
+        lifeCounts = 6;
+        lifeCounts_Current = 6;
+        lifePointValue = 100;
+        lifePointValue_Current = 100;
+        power = 100;
+        power_Current = 100;
+        point = 100;
+        point_Current = 100;
 
+    }
     //最基本的Getter和Setter
     public int GetLifeCounts()
     {
@@ -46,4 +57,5 @@ public class Player
     {
         return power_Current;
     }
+    
 }

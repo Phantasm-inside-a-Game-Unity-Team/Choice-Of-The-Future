@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5726236888857762488}
   - component: {fileID: 5726236888857762500}
   - component: {fileID: 5726236888857762501}
+  - component: {fileID: 1071717494588712198}
   - component: {fileID: 5726236888857762502}
   - component: {fileID: 5726236888857762503}
   m_Layer: 0
@@ -145,6 +146,26 @@ MonoBehaviour:
   left: 0
   up: 0
   down: 0
+--- !u!114 &1071717494588712198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726236888790895996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57715b92413a2e644879b22af0f1fb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeCounts: 0
+  lifeCounts_Current: 0
+  lifePointValue: 0
+  lifePointValue_Current: 0
+  power: 0
+  power_Current: 0
+  point: 0
+  point_Current: 0
 --- !u!61 &5726236888857762502
 BoxCollider2D:
   m_ObjectHideFlags: 0

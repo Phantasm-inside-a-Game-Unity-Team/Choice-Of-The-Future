@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - NPC
-=======
-  - Manager
->>>>>>> 10aed805da6aacfb6a0ea9dea6e541a6e83b7072
   layers:
   - Default
   - TransparentFX
@@ -43,8 +39,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: BackGround
-    uniqueID: 83360741
+  - name: Background
+    uniqueID: 2763613411
     locked: 0
   - name: Default
     uniqueID: 0
