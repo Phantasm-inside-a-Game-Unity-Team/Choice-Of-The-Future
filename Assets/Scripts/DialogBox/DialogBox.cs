@@ -37,10 +37,10 @@ public class DialogBox : MonoBehaviour
     void Update()
     {
         checkPosition();
-        OpenDialogBox();
+        //OpenDialogBox();
     }
-
-    // 计算NPC与主角的距离从而判断主角是否能和此npc对话
+    
+    //计算NPC与主角的距离从而判断主角是否能和此npc对话
     void checkPosition()
     {
         // 获取主角的信息
@@ -60,17 +60,18 @@ public class DialogBox : MonoBehaviour
             flagOfCanSpeak = false;
         }
     }
-
+    
     // 打开对话框
-    void OpenDialogBox()
+    public void OpenDialogBox()
     {
         // 判断条件：到达可以说话的距离而且按下了键盘的E键而且对话框并没有打开
-        if (flagOfCanSpeak && Input.GetKey(KeyCode.E) && !flagOfDialogBox)
-        {
+        //if (flagOfCanSpeak && Input.GetKey(KeyCode.E) && !flagOfDialogBox)
+        //{
             flagOfDialogBox = true;
             // 获取主角的信息
             GameObject Player = GameObject.FindWithTag("Player");
             // 根据主角的相对位置判断NPC的朝向
+            //这里也应该用上龙骨动画
             Vector3 diff = Player.transform.position - transform.position;
             if (diff.x <= 0 && Mathf.Abs(diff.x) >= Mathf.Abs(diff.y))
             {
@@ -97,6 +98,6 @@ public class DialogBox : MonoBehaviour
             Debug.Log("DialogBox!");
 
             flagOfDialogBox = false;
-        }
+        //}
     }
 }
