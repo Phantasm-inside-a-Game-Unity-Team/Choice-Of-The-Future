@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//游戏入口，开始时启动第一个场景
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//单例模板
+using UnityEngine;
 using System.Collections;
 
 public abstract class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
