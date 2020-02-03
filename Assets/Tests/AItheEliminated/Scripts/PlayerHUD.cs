@@ -43,9 +43,6 @@ public class PlayerHUD : MonoBehaviour
     public Image enemyValue_Current;
     //敌人血条的阴影当前长度
     public Image enemyValue_Shadow;
-
-
-
     //防止数据脏读的锁
     public static object locker = new System.Object();
     //值监视器
