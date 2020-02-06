@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackMode_Sakuya_01 : AAttackMode
-{
-    public GameObject bullentType;          //发射的子弹预设体
+{    
     public Vector3 relativeLaunchPosition;  //发射相对位置
     public float relativeLaunchAngle;       //发射相对角度（角度值，向前为0度，逆时针为正）
-    public int bullentNumber;               //一波发射数量
+    public int bullentNumber;               //一轮发射数量
     public float bullentRange;              //子弹覆盖范围
     public int bullentWave;                 //一轮发射波数
     public float waveInterval;              //每波间隔
@@ -16,16 +15,14 @@ public class AttackMode_Sakuya_01 : AAttackMode
     public float life;                      //弹幕生存时间
     public bool isCloseAttack;              //是否近战
 
+    public GameObject bullentType;          //发射的子弹预设体
+    public PlayerControl playerControl;     //角色控制器
+    public AudioSource attackSEsource;      //攻击音效
     Vector3 launchPosition;                 //实际发射位置
     float launchAngle;                      //实际发射角度
     float directionAngle;                   //角色方向角（角色朝向与y轴的夹角（弧度，逆时针为正向））
     float chargeFrontTime;                  //前摇计时
     float nextAttackableTime;               //下次可攻击的时间点
-    public PlayerControl playerControl;     //角色控制器
-    AMoveMode playerMoveMode;               //角色移动模式
-
-    public AudioSource attackSEsource;
-    public AudioClip attackSE;
 
     // Use this for initialization
     void Awake()
@@ -36,13 +33,11 @@ public class AttackMode_Sakuya_01 : AAttackMode
         }
         chargeFrontTime = 0;
         nextAttackableTime = 0;
-        playerMoveMode = playerControl.playerMoveMode;
-        //attackSEsource.clip = attackSE;
     }
 
     public override void Attack()
     {
-        if (cannotAttack || playerControl.isDead)
+        if (isCannotAttack || playerControl.isDead)
         {
             chargeFrontTime = 0;
             return;
@@ -72,9 +67,9 @@ public class AttackMode_Sakuya_01 : AAttackMode
 
     }
 
-    public void Launch()
+    void Launch()
     {
-        directionAngle = playerMoveMode.directionAngle;
+        directionAngle = playerControl.playerMoveMode.directionAngle;
         launchAngle = directionAngle + relativeLaunchAngle * Mathf.Deg2Rad;
         launchPosition = transform.position + Quaternion.AngleAxis(launchAngle * Mathf.Rad2Deg, Vector3.forward) * relativeLaunchPosition; //计算旋转后的偏移位置
         if (bullentNumber == 1)

@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    public AMoveMode playerMoveMode;
-    public AAttackMode playerAttackMode;
-    public AHitMode playerHitMode;
-    public bool isDead;
+    public AAttackMode playerAttackMode;    //玩家攻击模块
+    public AMoveMode playerMoveMode;        //玩家移动模块
+    public AHitMode playerHitMode;          //玩家受伤模块
+    public float playerSize;                //玩家判定大小
+    public int playerHP;                    //玩家HP
+    public bool isDead;                     //玩家角色是否死亡
 
     // Use this for initialization
     void Awake()
@@ -26,5 +28,18 @@ public class PlayerControl : MonoBehaviour
     {
 
     }
+    public void SetAttackMode(AAttackMode attackMode)
+    {
+        playerAttackMode = attackMode;
+    }
 
+    public void SetMoveMode(AMoveMode moveMode)
+    {
+        playerMoveMode = moveMode;
+    }
+
+    public void SetHitMode(AHitMode hitMode)
+    {
+        playerHitMode = hitMode;
+    }
 }

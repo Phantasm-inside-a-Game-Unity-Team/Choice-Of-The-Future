@@ -14,20 +14,17 @@ public class MoveMode_Player_Dash : AMoveMode
     bool isMove;                    //角色是否移动中
     float inputX;                   //左右按键
     float inputY;                   //上下按键
-    float DirectionX;               //角色左右朝向
-    float DirectionY;               //角色上下朝向
     bool isDash;                    //角色是否冲刺中
     float dashStartTime;            //角色冲刺开始时间
     Vector2 playerDirection;        //角色朝向    
 
     void Start()
     {
-        DirectionY = 1;
-        playerDirection.Set(0, 1);
+        playerDirection.Set(0, 1);  //角色默认朝上
     }
     public override void Move()
     {
-        if (cannontMove)
+        if (isCannontMove)
             return;
 
         inputX = Input.GetAxisRaw("Horizontal");
@@ -39,33 +36,31 @@ public class MoveMode_Player_Dash : AMoveMode
             isDash = true;
             dashStartTime = Time.timeSinceLevelLoad;
             playerAnimator.SetBool("isDash", true);
-            playerControl.playerAttackMode.cannotAttack = true;
+            playerControl.playerAttackMode.isCannotAttack = true;
         }
         if (isDash)
         {
-            rb.velocity = new Vector2(DirectionX * dashSpeed, DirectionY * dashSpeed);
+            rb.velocity = new Vector2(playerDirection.x * dashSpeed, playerDirection.y * dashSpeed);
             if ((Time.time - dashStartTime) > dashTime)
             {
                 isDash = false;
                 playerAnimator.SetBool("isDash", false);
-                playerControl.playerAttackMode.cannotAttack = false;
+                playerControl.playerAttackMode.isCannotAttack = false;
             }
             return;
         }
         playerAnimator.SetBool("isMove", isMove);
         if (isMove)
         {
-            DirectionX = inputX;
-            DirectionY = inputY;
             playerDirection.Set(inputX, inputY);
-            playerAnimator.SetFloat("moveX", DirectionX);
-            playerAnimator.SetFloat("moveY", DirectionY);
+            playerAnimator.SetFloat("moveX", playerDirection.x);
+            playerAnimator.SetFloat("moveY", playerDirection.y);
         }
         rb.velocity = new Vector2(inputX * moveSpeed, inputY * moveSpeed);
     }
 
     public override void IsDelayed()
     {
-        //throw new System.NotImplementedException();
+        //硬直时的操作
     }
 }

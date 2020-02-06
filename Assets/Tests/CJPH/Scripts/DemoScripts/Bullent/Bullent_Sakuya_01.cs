@@ -41,23 +41,23 @@ public class Bullent_Sakuya_01 : ABullent
         BullentTranslate();
     }
 
-    void CollisionDet()
-    {
-        for (int index = 0; index < enemies.Count; index++)
-        {
-            if ((transform.position - new Vector3(0, 0, transform.position.z) - enemies[index].transform.position).magnitude < (bullentSize + enemies[index].GetComponent<EnemyControl>().enemySize) && enemies[index].GetComponent<EnemyControl>().isDead == false)
-            {
-                if (enemies[index].GetComponent<EnemyControl>().enemyModeManager.enemyHitMode != null)
-                {
-                    enemies[index].GetComponent<EnemyControl>().enemyModeManager.enemyHitMode.IsHit(attackPoint, effect);
-                    Instantiate(hitEffect, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                }
-                else
-                    Debug.Log("Enemy is not found");
-            }
-        }
-    }
+    //void CollisionDet()
+    //{
+    //    for (int index = 0; index < enemies.Count; index++)
+    //    {
+    //        if ((transform.position - new Vector3(0, 0, transform.position.z) - enemies[index].transform.position).magnitude < (bullentSize + enemies[index].GetComponent<EnemyControl>().enemySize) && enemies[index].GetComponent<EnemyControl>().isDead == false)
+    //        {
+    //            if (enemies[index].GetComponent<EnemyControl>().enemyHitMode != null)
+    //            {
+    //                enemies[index].GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
+    //                Instantiate(hitEffect, transform.position, Quaternion.identity);
+    //                Destroy(gameObject);
+    //            }
+    //            else
+    //                Debug.Log("Enemy is not found");
+    //        }
+    //    }
+    //}
 
     void BullentTranslate()
     {
