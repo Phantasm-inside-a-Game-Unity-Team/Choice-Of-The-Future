@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MySceneManager : SingletonTemplate<MySceneManager>
+public class TilemapTestSceneManager : SingletonTemplate<TilemapTestSceneManager>
 {
     public GameObject playerPrefeb;
     public GameObject player;

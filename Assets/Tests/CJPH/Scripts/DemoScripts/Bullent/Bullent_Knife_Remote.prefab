@@ -95,7 +95,7 @@ MonoBehaviour:
   life: 0
   velocity: 5
   acceleration: 0
-  angularVelocity: 1080
+  angularVelocity: 0
   rotationCenter: {x: 0, y: 1, z: 0}
   attackPoint: 1
   bullentSize: 0.12

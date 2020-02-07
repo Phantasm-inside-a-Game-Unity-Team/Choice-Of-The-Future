@@ -25,7 +25,7 @@ public class MapExit : MonoBehaviour
         {
             DontDestroyOnLoad(other);
             SceneManager.LoadScene(sceneName);
-            MySceneManager.Instance.playerInitialPosition = playerInitialPosition;
+            TilemapTestSceneManager.Instance.playerInitialPosition = playerInitialPosition;
         }
     }
 }

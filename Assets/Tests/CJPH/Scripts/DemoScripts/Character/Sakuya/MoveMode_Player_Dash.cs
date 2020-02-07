@@ -29,7 +29,7 @@ public class MoveMode_Player_Dash : AMoveMode
 
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
-        directionAngle = Vector2.SignedAngle(Vector2.up, playerDirection) * Mathf.Deg2Rad;
+        directionAngle = Vector2.SignedAngle(Vector2.up, playerDirection);
         isMove = !(inputX == 0 && inputY == 0);
         if (Input.GetButtonDown("Dash") && isMove && !isDash && (Time.timeSinceLevelLoad - dashStartTime - dashTime) > dashChargeTime)
         {

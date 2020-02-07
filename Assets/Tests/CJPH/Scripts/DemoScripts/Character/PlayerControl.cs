@@ -20,8 +20,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMoveMode.Move();
         playerAttackMode.Attack();
+        playerMoveMode.Move();
         playerHitMode.Hit();
     }
     void IsAlive()

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackMode_Sakuya_01 : AAttackMode
-{    
+public class AttackMode_Enemy_01 : AAttackMode
+{
     public Vector3 relativeLaunchPosition;  //发射相对位置
     public float relativeLaunchAngle;       //发射相对角度（角度值，向前为0度，逆时针为正）
     public int bullentNumber;               //一轮发射数量
@@ -16,13 +16,14 @@ public class AttackMode_Sakuya_01 : AAttackMode
     public bool isCloseAttack;              //是否近战
 
     public GameObject bullentType;          //发射的子弹预设体
-    public PlayerControl playerControl;     //角色控制器
+    public EnemyControl enemyControl;       //角色控制器
     public AudioSource attackSEsource;      //攻击音效
     Vector3 launchPosition;                 //实际发射位置
     float launchAngle;                      //实际发射角度
-    float directionAngle;                   //角色方向角（角色朝向与y轴的夹角（角度值，逆时针为正向））
+    //float directionAngle;                   //角色方向角（角色朝向与y轴的夹角（弧度，逆时针为正向））
     float chargeFrontTime;                  //前摇计时
     float nextAttackableTime;               //下次可攻击的时间点
+    GameObject player;                      //玩家角色
 
     // Use this for initialization
     void Start()
@@ -33,18 +34,18 @@ public class AttackMode_Sakuya_01 : AAttackMode
         }
         chargeFrontTime = 0;
         nextAttackableTime = 0;
+        player = DemoSceneManager.Instance.player;
     }
 
     public override void Attack()
     {
-        if (isCannotAttack || playerControl.isDead)
+        if (isCannotAttack || enemyControl.isDead)
         {
-            CancelInvoke();
             chargeFrontTime = 0;
             return;
         }
 
-        if (Input.GetButton("Attack1") && (Time.timeSinceLevelLoad > nextAttackableTime))    //按下攻击键且没有处于后摇中
+        if ((player.transform.position - transform.position).magnitude < enemyControl.hatredRange && Time.timeSinceLevelLoad > nextAttackableTime)   //玩家进入仇恨范围并且没有在后摇中
         {
             chargeFrontTime += Time.deltaTime;
             if (chargeFrontTime > chargeFront)
@@ -59,7 +60,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
         }
         else
         {
-            chargeFrontTime = 0;
+            chargeFrontTime = 0;                   //前摇计时清零
         }
     }
 
@@ -70,8 +71,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
 
     void Launch()
     {
-        directionAngle = playerControl.playerMoveMode.directionAngle;
-        launchAngle = directionAngle + relativeLaunchAngle;
+        launchAngle = Vector2.SignedAngle(Vector2.up, (player.transform.position - transform.position)) + relativeLaunchAngle;
         launchPosition = transform.position + Quaternion.AngleAxis(launchAngle, Vector3.forward) * relativeLaunchPosition; //计算旋转后的偏移位置
         if (bullentNumber == 1)
         {
@@ -94,6 +94,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
                 }
             }
         }
+
         //attackSEsource.Play();
     }
 }

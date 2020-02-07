@@ -14,10 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - MyEnemy
+  - EnemyBullent
+  - MyPlayer
+  - PlayerBullent
   - 
   - 
   - 
