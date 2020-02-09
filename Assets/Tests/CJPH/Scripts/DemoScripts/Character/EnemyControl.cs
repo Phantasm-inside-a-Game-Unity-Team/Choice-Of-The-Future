@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public AAttackMode enemyAttackMode;     //敌人攻击模块
-    public AMoveMode enemyMoveMode;         //敌人移动模块
-    public AHitMode enemyHitMode;           //敌人受伤模块
-    public float enemySize;                 //敌人判定大小
-    public int enemyHP;                     //敌人HP
-    public bool isDead;                     //敌人角色是否死亡
-    public float hatredRange;               //仇恨距离
+    public List<AAttackMode> enemyAttackModes;  //玩家攻击模块
+    public AMoveMode enemyMoveMode;             //敌人移动模块
+    public AHitMode enemyHitMode;               //敌人受伤模块
+    public float enemySize;                     //敌人判定大小
+    public int enemyHP;                         //敌人HP
+    public bool isDead;                         //敌人角色是否死亡
+    public float hatredRange;                   //仇恨距离
 
     // Use this for initialization
     void Awake()
@@ -20,7 +20,10 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyAttackMode.Attack();
+        for (int i = 0; i < enemyAttackModes.Count; i++)
+        {
+            enemyAttackModes[i].AttackButtonDown();
+        }
         enemyMoveMode.Move();
         enemyHitMode.Hit();
     }
@@ -28,9 +31,9 @@ public class EnemyControl : MonoBehaviour
     {
 
     }
-    public void SetAttackMode(AAttackMode attackMode)
+    public void SetAttackMode(AAttackMode attackMode,int index)
     {
-        enemyAttackMode = attackMode;
+        enemyAttackModes[index] = attackMode;
     }
 
     public void SetMoveMode(AMoveMode moveMode)

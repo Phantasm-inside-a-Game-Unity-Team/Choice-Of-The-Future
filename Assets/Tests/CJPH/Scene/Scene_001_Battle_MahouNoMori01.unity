@@ -122,8 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 40812777}
   - component: {fileID: 40812778}
-  m_Layer: 0
-  m_Name: Attack_Sakuya_02
+  m_Layer: 10
+  m_Name: Attack_Sakuya_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,12 +136,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40812776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 312040646}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &40812778
 MonoBehaviour:
@@ -158,8 +158,8 @@ MonoBehaviour:
   isCannotAttack: 0
   relativeLaunchPosition: {x: 0, y: 0.6, z: 0}
   relativeLaunchAngle: 0
-  bullentNumber: 1
-  bullentRange: 30
+  bullentNumber: 3
+  bullentRange: 20
   bullentWave: 1
   waveInterval: 0
   chargeFront: 0
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172483611}
   - component: {fileID: 172483610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hit_Bat_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312040646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,8 +240,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1064695064}
   - {fileID: 40812777}
+  - {fileID: 1064695064}
+  - {fileID: 622492538}
   m_Father: {fileID: 1920800554}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1105,7 +1106,7 @@ GameObject:
   - component: {fileID: 399100702}
   - component: {fileID: 399100704}
   - component: {fileID: 399100703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1195,7 @@ Transform:
   - {fileID: 467152385}
   - {fileID: 1838033189}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &399100702
 MonoBehaviour:
@@ -1208,7 +1209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe00120fe840ba478d2e603285e8031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttackMode: {fileID: 1828774268}
+  enemyAttackModes:
+  - {fileID: 1828774268}
   enemyMoveMode: {fileID: 2146543608}
   enemyHitMode: {fileID: 172483610}
   enemySize: 0
@@ -1243,7 +1245,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1262,7 +1264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414588497}
   - component: {fileID: 414588498}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hit_Sakuya_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467152385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MoveMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1377,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -2162,7 +2164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 584924360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2184,6 +2186,64 @@ Transform:
   m_Father: {fileID: 399100701}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &622492537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 622492538}
+  - component: {fileID: 622492539}
+  m_Layer: 10
+  m_Name: Attack_Sakuya_03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &622492538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622492537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 312040646}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &622492539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622492537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d6690068951e646b791e6d1bdce309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCannotAttack: 0
+  relativeLaunchPosition: {x: 0, y: 0.4, z: 0}
+  relativeLaunchAngle: 0
+  bullentNumber: 1
+  bullentRange: 0
+  bullentWave: 1
+  waveInterval: 0
+  chargeFront: 0
+  chargeBack: 0.8
+  life: 3
+  isCloseAttack: 0
+  bullentType: {fileID: 4327968801639355055, guid: 68b8d7bee1794f24faa980228c5f93c8,
+    type: 3}
+  playerControl: {fileID: 1920800556}
+  attackSEsource: {fileID: 0}
 --- !u!1 &778159074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778159075}
   - component: {fileID: 778159076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Move_Sakuya_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2245,7 +2305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842021893}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,8 +2337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1064695064}
   - component: {fileID: 1064695065}
-  m_Layer: 0
-  m_Name: Attack_Sakuya_01
+  m_Layer: 10
+  m_Name: Attack_Sakuya_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2296,7 +2356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 312040646}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1064695065
 MonoBehaviour:
@@ -2314,7 +2374,7 @@ MonoBehaviour:
   relativeLaunchPosition: {x: 0, y: 0.6, z: 0}
   relativeLaunchAngle: 60
   bullentNumber: 1
-  bullentRange: 0
+  bullentRange: 30
   bullentWave: 1
   waveInterval: 0
   chargeFront: 0
@@ -2463,7 +2523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828774267}
   - component: {fileID: 1828774268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack_Bat_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2499,15 +2559,15 @@ MonoBehaviour:
   isCannotAttack: 0
   relativeLaunchPosition: {x: 0, y: 0, z: 0}
   relativeLaunchAngle: 0
-  bullentNumber: 3
-  bullentRange: 60
+  bullentNumber: 1
+  bullentRange: 0
   bullentWave: 3
   waveInterval: 0.4
-  chargeFront: 0
-  chargeBack: 0.8
+  chargeFront: 0.5
+  chargeBack: 4
   life: 3
   isCloseAttack: 0
-  bullentType: {fileID: 2090525161919128463, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+  bullentType: {fileID: 2090525161919128463, guid: 68ad2b3b5c23ac74faddab8e97c2f460,
     type: 3}
   enemyControl: {fileID: 399100702}
   attackSEsource: {fileID: 0}
@@ -2521,7 +2581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838033189}
   - component: {fileID: 1838033190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HitMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2564,7 +2624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1904731888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MoveMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2600,7 +2660,7 @@ GameObject:
   - component: {fileID: 1920800555}
   - component: {fileID: 1920800556}
   - component: {fileID: 1920800557}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player_Sakuya
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2724,7 +2784,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b35b18cb9ee3f043b5168c4fc191d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttackMode: {fileID: 1064695065}
+  attackButtons:
+  - Attack1
+  - Attack2
+  - Skill1
+  playerAttackModes:
+  - {fileID: 40812778}
+  - {fileID: 1064695065}
+  - {fileID: 622492539}
   playerMoveMode: {fileID: 778159076}
   playerHitMode: {fileID: 414588498}
   playerSize: 0
@@ -2776,7 +2843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1920800551}
-  enemies: []
+  enemies:
+  - {fileID: 399100698}
 --- !u!4 &1963960304
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,7 +2857,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2100290651
 GameObject:
@@ -4579,7 +4647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146543609}
   - component: {fileID: 2146543608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Move_Bat_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4620,141 +4688,72 @@ Transform:
   m_Father: {fileID: 467152385}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2090525162285784487
+--- !u!1001 &9184747391556792160
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2090525161919128463, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 4327968801639355055, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_Name
-      value: Bullent_Knife_Remote
+      value: Bullent_Sakuya_03
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.13
+      value: 3.91
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: 0.17
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2090525161919128460, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+    - target: {fileID: 5108802885332789029, guid: 68b8d7bee1794f24faa980228c5f93c8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d99dff2de61d42408dd666dd04e1d1a, type: 3}
---- !u!1001 &2768504660619021807
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2768504660609669083, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullent_Knife_Close
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2768504660609669081, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 68b8d7bee1794f24faa980228c5f93c8, type: 3}

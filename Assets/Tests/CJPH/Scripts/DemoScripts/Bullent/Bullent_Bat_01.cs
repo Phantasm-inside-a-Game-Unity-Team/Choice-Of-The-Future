@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bullent_Sakuya_01 : ABullent
+public class Bullent_Bat_01 : ABullent
 {
     public float velocity;              //弹幕速度(近战弹幕为零)
     public float acceleration;          //弹幕加速度(近战弹幕为零)
@@ -65,9 +65,9 @@ public class Bullent_Sakuya_01 : ABullent
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.layer == 8)
+        if (collider.gameObject.layer == 10)
         {
-            collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
+            collider.gameObject.GetComponent<PlayerControl>().playerHitMode.BeHit(attackPoint, effect);
         }
         Destroy(gameObject);
     }

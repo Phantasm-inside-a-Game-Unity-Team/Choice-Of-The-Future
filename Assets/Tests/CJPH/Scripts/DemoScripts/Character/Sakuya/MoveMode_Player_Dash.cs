@@ -36,7 +36,10 @@ public class MoveMode_Player_Dash : AMoveMode
             isDash = true;
             dashStartTime = Time.timeSinceLevelLoad;
             playerAnimator.SetBool("isDash", true);
-            playerControl.playerAttackMode.isCannotAttack = true;
+            foreach (var attackMode in playerControl.playerAttackModes)
+            {
+                attackMode.isCannotAttack = true;
+            }
         }
         if (isDash)
         {
@@ -45,7 +48,10 @@ public class MoveMode_Player_Dash : AMoveMode
             {
                 isDash = false;
                 playerAnimator.SetBool("isDash", false);
-                playerControl.playerAttackMode.isCannotAttack = false;
+                foreach (var attackMode in playerControl.playerAttackModes)
+                {
+                    attackMode.isCannotAttack = false;
+                }
             }
             return;
         }

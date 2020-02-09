@@ -23,6 +23,6 @@ public class HitMode_Enemy_Normal : AHitMode
 
     public override void BeHit(int atkPoint, int effect)
     {
-        
+        Debug.Log("enemyHP-"+atkPoint.ToString());
     }
 }

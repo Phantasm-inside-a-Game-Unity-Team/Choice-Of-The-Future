@@ -35,7 +35,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
         nextAttackableTime = 0;
     }
 
-    public override void Attack()
+    public override void AttackButtonDown()
     {
         if (isCannotAttack || playerControl.isDead)
         {
@@ -44,7 +44,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
             return;
         }
 
-        if (Input.GetButton("Attack1") && (Time.timeSinceLevelLoad > nextAttackableTime))    //按下攻击键且没有处于后摇中
+        if (Time.timeSinceLevelLoad > nextAttackableTime)    //没有处于后摇中
         {
             chargeFrontTime += Time.deltaTime;
             if (chargeFrontTime > chargeFront)
@@ -61,6 +61,11 @@ public class AttackMode_Sakuya_01 : AAttackMode
         {
             chargeFrontTime = 0;
         }
+    }
+
+    public override void AttackButtonUp()
+    {
+        chargeFrontTime = 0;
     }
 
     public override void PowerUp(int power)

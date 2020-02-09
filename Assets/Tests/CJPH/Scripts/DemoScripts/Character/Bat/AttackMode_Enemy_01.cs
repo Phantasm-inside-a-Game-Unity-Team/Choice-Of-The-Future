@@ -37,7 +37,7 @@ public class AttackMode_Enemy_01 : AAttackMode
         player = DemoSceneManager.Instance.player;
     }
 
-    public override void Attack()
+    public override void AttackButtonDown()
     {
         if (isCannotAttack || enemyControl.isDead)
         {
@@ -62,6 +62,11 @@ public class AttackMode_Enemy_01 : AAttackMode
         {
             chargeFrontTime = 0;                   //前摇计时清零
         }
+    }
+
+    public override void AttackButtonUp()
+    {
+        chargeFrontTime = 0;                   //前摇计时清零
     }
 
     public override void PowerUp(int power)
