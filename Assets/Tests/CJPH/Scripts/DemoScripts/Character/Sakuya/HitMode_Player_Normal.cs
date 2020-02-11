@@ -9,8 +9,8 @@ public class HitMode_Player_Normal : AHitMode
         
     }
 
-    public override void IsHit(int atkPoint, int effect)
+    public override void BeHit(int atkPoint, int effect)
     {
-        
+        Debug.Log("playerHP-"+atkPoint.ToString());
     }
 }

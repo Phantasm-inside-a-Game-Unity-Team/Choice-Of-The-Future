@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bullent_Sakuya_01 : ABullent
+public class Bullent_Sakuya_02 : ABullent
 {
     public float velocity;              //弹幕速度(近战弹幕为零)
     public float acceleration;          //弹幕加速度(近战弹幕为零)
@@ -31,7 +31,11 @@ public class Bullent_Sakuya_01 : ABullent
     {
         if ((Time.timeSinceLevelLoad - startTime) > life)
         {
-            Destroy(gameObject);
+            if ((Time.timeSinceLevelLoad - startTime) > (life + 0.1))
+            {
+                Destroy(gameObject);
+            }
+            return;
         }
         //CollisionDet();
         //transform.Translate(direction * Time.deltaTime, Space.World);
@@ -67,8 +71,7 @@ public class Bullent_Sakuya_01 : ABullent
     {
         if (collider.gameObject.layer == 8)
         {
-            collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
+            collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint,effect);
         }
-        Destroy(gameObject);
     }
 }
