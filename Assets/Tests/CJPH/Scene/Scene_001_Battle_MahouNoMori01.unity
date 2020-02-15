@@ -1297,6 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623cc50203e34964f9862df1b048e4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControl: {fileID: 1920800556}
 --- !u!1 &467152384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,7 +2743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920800551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: -0.81, z: 0}
+  m_LocalPosition: {x: 2.69, y: -1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312040646}
@@ -2784,6 +2785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b35b18cb9ee3f043b5168c4fc191d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1920800552}
   attackButtons:
   - Attack1
   - Attack2
@@ -2795,7 +2797,9 @@ MonoBehaviour:
   playerMoveMode: {fileID: 778159076}
   playerHitMode: {fileID: 414588498}
   playerSize: 0
-  playerHP: 0
+  playerLife: 0
+  playerMaxHP: 3
+  playerHP: 3
   isDead: 0
 --- !u!70 &1920800557
 CapsuleCollider2D:

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitMode_Player_Normal : AHitMode
 {
+    public PlayerControl playerControl;
     public override void Hit()
     {
         
@@ -12,5 +13,6 @@ public class HitMode_Player_Normal : AHitMode
     public override void BeHit(int atkPoint, int effect)
     {
         Debug.Log("playerHP-"+atkPoint.ToString());
+        playerControl.playerHP -= atkPoint;
     }
 }
