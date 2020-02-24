@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitMode_Enemy_Normal : AHitMode
 {
+    public EnemyControl enemyControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,10 @@ public class HitMode_Enemy_Normal : AHitMode
         
     }
 
-    public override void BeHit(int atkPoint, int effect)
+    public override void BeHit(float atkPoint, int effect)
     {
-        Debug.Log("enemyHP-"+atkPoint.ToString());
+        float reducedHP = atkPoint - enemyControl.enemyDefensePoint;
+        Debug.Log("enemyHP-" + reducedHP.ToString());
+        enemyControl.enemyHP -= reducedHP;
     }
 }

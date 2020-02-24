@@ -10,26 +10,29 @@ public class MoveMode_Enemy_01 : AMoveMode
     public float moveTime;                  //移动时间
     public float moveInterval;              //移动间隔时间
     GameObject player;                      //玩家角色
-    Vector2 enemyDirection;                 //角色朝向
     float timeCount;                        //移动计时
-    bool isMoving;
+    bool isMoving;                          //角色是否移动中
 
     void Start()
     {
-        enemyDirection.Set(0, -1);  //角色默认朝下
-        player = DemoSceneManager.Instance.player;
+        SetDirection(Vector2.down);  //角色默认朝下
+        player = DemoSceneManager.Instance.mainPlayer;
     }
 
     public override void Move()
     {
-        if (isCannontMove)
+        if (isCannontMove || enemyControl.isDead)
+        {
+            rb.velocity = Vector2.zero;
             return;
+        }
+           
         if ((player.transform.position - transform.position).magnitude < enemyControl.hatredRange)
         {
             rb.velocity = Vector2.zero;
-            enemyDirection = player.transform.position - transform.position;
-            enemyAnimator.SetFloat("moveX", enemyDirection.x);
-            enemyAnimator.SetFloat("moveY", enemyDirection.y);
+            characterDirection = player.transform.position - transform.position;
+            enemyAnimator.SetFloat("moveX", characterDirection.x);
+            enemyAnimator.SetFloat("moveY", characterDirection.y);
             timeCount = 0;
             isMoving = false;
         }
@@ -40,14 +43,14 @@ public class MoveMode_Enemy_01 : AMoveMode
             {
                 if (!isMoving)
                 {
-                    enemyDirection = Random.insideUnitCircle.normalized;
-                    enemyAnimator.SetFloat("moveX", enemyDirection.x);
-                    enemyAnimator.SetFloat("moveY", enemyDirection.y);
+                    characterDirection = Random.insideUnitCircle.normalized;
+                    enemyAnimator.SetFloat("moveX", characterDirection.x);
+                    enemyAnimator.SetFloat("moveY", characterDirection.y);
                     isMoving = true;
                 }
                 else
                 {
-                    rb.velocity = enemyDirection * moveSpeed;
+                    rb.velocity = characterDirection * moveSpeed;
                 }
             }
             else if (timeCount > moveInterval + moveTime)
@@ -62,5 +65,12 @@ public class MoveMode_Enemy_01 : AMoveMode
     public override void IsDelayed()
     {
 
+    }
+
+    public override void SetDirection(Vector2 direction)
+    {
+        enemyAnimator.SetFloat("moveX", direction.x);
+        enemyAnimator.SetFloat("moveY", direction.y);
+        characterDirection = direction;
     }
 }

@@ -3,10 +3,14 @@ using System.Collections;
 
 public abstract class AMoveMode : MonoBehaviour
 {
-    public bool isCannontMove;
-    public float moveSpeed;         //角色移动速度
     [HideInInspector]
-    public float directionAngle;    //角色朝向与y轴的夹角（角度值，逆时针为正向）
-    public abstract void Move();
-    public abstract void IsDelayed();
+    public bool isCannontMove;          //是否无法移动
+    public float moveSpeed;             //角色移动速度
+    [HideInInspector]
+    public float directionAngle;        //角色朝向与y轴的夹角（角度值，逆时针为正向）
+    [HideInInspector]
+    public Vector2 characterDirection;  //角色朝向    
+    public abstract void Move();                            //移动操作
+    public abstract void IsDelayed();                       //硬直时的操作
+    public abstract void SetDirection(Vector2 direction);   //设置角色朝向
 }

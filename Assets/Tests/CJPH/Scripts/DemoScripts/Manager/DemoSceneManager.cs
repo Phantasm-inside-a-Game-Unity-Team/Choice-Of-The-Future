@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DemoSceneManager : SingletonTemplate<DemoSceneManager>
 {
-    public GameObject player;
+    public GameObject mainPlayer;       //主角色实例
+    public GameObject subPlayer;
     public List<GameObject> enemies;
+    public GameObject boss;
+    public Vector3 rebirthPoint;
 
 
     // Start is called before the first frame update
