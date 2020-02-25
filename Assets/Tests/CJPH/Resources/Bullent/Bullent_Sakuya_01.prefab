@@ -99,7 +99,7 @@ MonoBehaviour:
   acceleration: 0
   angularVelocity: 0
   rotationCenter: {x: 0, y: 1, z: 0}
-  attackPoint: 2
+  attackPoint: 1
   bullentSize: 0.15
   hitEffect: {fileID: 0}
   enemies: []

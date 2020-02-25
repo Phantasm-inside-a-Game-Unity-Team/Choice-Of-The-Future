@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class MoveMode_Player_Dash : AMoveMode
 {
-    public Animator playerAnimator; //角色动画机
-    public Rigidbody2D rb;          //角色的刚体
-    public float dashTime;          //冲刺持续时间
-    public float dashSpeed;         //冲刺速度
-    public float dashChargeTime;    //冲刺后摇
     public PlayerControl playerControl; //角色控制器
+    public Animator playerAnimator;     //角色动画机
+    public Rigidbody2D rb;              //角色的刚体
+    public float dashSpeed;             //冲刺速度
+    public float dashTime;              //冲刺持续时间
+    public float dashChargeTime;        //冲刺后摇
 
-    bool isMove;                    //角色是否移动中
-    float inputX;                   //左右按键
-    float inputY;                   //上下按键
-    bool isDash;                    //角色是否冲刺中
-    float dashStartTime;            //角色冲刺开始时间
-    Vector2 playerDirection;        //角色朝向    
+    bool isWalk;                        //角色是否移动中
+    float inputX;                       //左右按键
+    float inputY;                       //上下按键
+    bool isDash;                        //角色是否冲刺中
+    float dashStartTime;                //角色冲刺开始时间
 
     void Start()
     {
-        playerDirection.Set(0, 1);  //角色默认朝上
+        SetDirection(Vector2.up);  //角色默认朝上
     }
     public override void Move()
     {
-        if (isCannontMove)
+        if (isCannontMove || playerControl.isDead)
+        {
+            rb.velocity = Vector2.zero;
             return;
+        }
 
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
-        directionAngle = Vector2.SignedAngle(Vector2.up, playerDirection);
-        isMove = !(inputX == 0 && inputY == 0);
-        if (Input.GetButtonDown("Dash") && isMove && !isDash && (Time.timeSinceLevelLoad - dashStartTime - dashTime) > dashChargeTime)
+        directionAngle = Vector2.SignedAngle(Vector2.up, characterDirection);
+        isWalk = !(inputX == 0 && inputY == 0);
+        if (Input.GetButtonDown("Dash") && isWalk && !isDash && (Time.timeSinceLevelLoad - dashStartTime - dashTime) > dashChargeTime)
         {
             isDash = true;
             dashStartTime = Time.timeSinceLevelLoad;
@@ -43,7 +45,7 @@ public class MoveMode_Player_Dash : AMoveMode
         }
         if (isDash)
         {
-            rb.velocity = new Vector2(playerDirection.x * dashSpeed, playerDirection.y * dashSpeed);
+            rb.velocity = new Vector2(characterDirection.x * dashSpeed, characterDirection.y * dashSpeed);
             if ((Time.time - dashStartTime) > dashTime)
             {
                 isDash = false;
@@ -55,12 +57,12 @@ public class MoveMode_Player_Dash : AMoveMode
             }
             return;
         }
-        playerAnimator.SetBool("isMove", isMove);
-        if (isMove)
+        playerAnimator.SetBool("isWalk", isWalk);
+        if (isWalk)
         {
-            playerDirection.Set(inputX, inputY);
-            playerAnimator.SetFloat("moveX", playerDirection.x);
-            playerAnimator.SetFloat("moveY", playerDirection.y);
+            characterDirection.Set(inputX, inputY);
+            playerAnimator.SetFloat("moveX", characterDirection.x);
+            playerAnimator.SetFloat("moveY", characterDirection.y);
         }
         rb.velocity = new Vector2(inputX * moveSpeed, inputY * moveSpeed);
     }
@@ -68,5 +70,12 @@ public class MoveMode_Player_Dash : AMoveMode
     public override void IsDelayed()
     {
         //硬直时的操作
+    }
+
+    public override void SetDirection(Vector2 direction)
+    {
+        playerAnimator.SetFloat("moveX", direction.x);
+        playerAnimator.SetFloat("moveY", direction.y);
+        characterDirection = direction;
     }
 }

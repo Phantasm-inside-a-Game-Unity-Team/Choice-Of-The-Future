@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackMode_Sakuya_01 : AAttackMode
-{    
+{
     public Vector3 relativeLaunchPosition;  //发射相对位置
     public float relativeLaunchAngle;       //发射相对角度（角度值，向前为0度，逆时针为正）
     public int bullentNumber;               //一轮发射数量
@@ -13,7 +13,8 @@ public class AttackMode_Sakuya_01 : AAttackMode
     public float chargeFront;               //攻击前摇
     public float chargeBack;                //攻击后摇
     public float life;                      //弹幕生存时间
-    public bool isCloseAttack;              //是否近战
+    public float attackPointRatio;          //子弹攻击力比角色攻击力的倍数
+    public bool isCloseAttack;              //是否是近战
 
     public GameObject bullentType;          //发射的子弹预设体
     public PlayerControl playerControl;     //角色控制器
@@ -73,7 +74,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
 
     }
 
-    void Launch()
+    void Launch()   //发射一波子弹
     {
         directionAngle = playerControl.playerMoveMode.directionAngle;
         launchAngle = directionAngle + relativeLaunchAngle;
@@ -82,6 +83,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
         {
             GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
             bullentIns.GetComponent<ABullent>().life = life;
+            bullentIns.GetComponent<ABullent>().attackPoint = playerControl.playerAttackPoint * attackPointRatio;
             if (isCloseAttack)
             {
                 bullentIns.transform.parent = transform;    //近战子弹跟着角色移动
@@ -93,9 +95,10 @@ public class AttackMode_Sakuya_01 : AAttackMode
             {
                 GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
                 bullentIns.GetComponent<ABullent>().life = life;
+                bullentIns.GetComponent<ABullent>().attackPoint = playerControl.playerAttackPoint * attackPointRatio;
                 if (isCloseAttack)
                 {
-                    bullentIns.transform.parent = transform;
+                    bullentIns.transform.parent = transform;    //近战子弹跟着角色移动
                 }
             }
         }

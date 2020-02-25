@@ -13,6 +13,7 @@ public class AttackMode_Enemy_01 : AAttackMode
     public float chargeFront;               //攻击前摇
     public float chargeBack;                //攻击后摇
     public float life;                      //弹幕生存时间
+    public float attackPointRatio;          //子弹攻击力比敌人攻击力的倍数
     public bool isCloseAttack;              //是否近战
 
     public GameObject bullentType;          //发射的子弹预设体
@@ -20,7 +21,7 @@ public class AttackMode_Enemy_01 : AAttackMode
     public AudioSource attackSEsource;      //攻击音效
     Vector3 launchPosition;                 //实际发射位置
     float launchAngle;                      //实际发射角度
-    //float directionAngle;                   //角色方向角（角色朝向与y轴的夹角（弧度，逆时针为正向））
+    //float directionAngle;                 //角色方向角（角色朝向与y轴的夹角（弧度，逆时针为正向））
     float chargeFrontTime;                  //前摇计时
     float nextAttackableTime;               //下次可攻击的时间点
     GameObject player;                      //玩家角色
@@ -34,17 +35,17 @@ public class AttackMode_Enemy_01 : AAttackMode
         }
         chargeFrontTime = 0;
         nextAttackableTime = 0;
-        player = DemoSceneManager.Instance.player;
     }
 
     public override void AttackButtonDown()
     {
         if (isCannotAttack || enemyControl.isDead)
         {
+            CancelInvoke();
             chargeFrontTime = 0;
             return;
         }
-
+        player = DemoSceneManager.Instance.mainPlayer;
         if ((player.transform.position - transform.position).magnitude < enemyControl.hatredRange && Time.timeSinceLevelLoad > nextAttackableTime)   //玩家进入仇恨范围并且没有在后摇中
         {
             chargeFrontTime += Time.deltaTime;
@@ -74,7 +75,7 @@ public class AttackMode_Enemy_01 : AAttackMode
 
     }
 
-    void Launch()
+    void Launch()   //发射一波子弹
     {
         launchAngle = Vector2.SignedAngle(Vector2.up, (player.transform.position - transform.position)) + relativeLaunchAngle;
         launchPosition = transform.position + Quaternion.AngleAxis(launchAngle, Vector3.forward) * relativeLaunchPosition; //计算旋转后的偏移位置
@@ -82,6 +83,7 @@ public class AttackMode_Enemy_01 : AAttackMode
         {
             GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
             bullentIns.GetComponent<ABullent>().life = life;
+            bullentIns.GetComponent<ABullent>().attackPoint = enemyControl.enemyAttackPoint * attackPointRatio;
             if (isCloseAttack)
             {
                 bullentIns.transform.parent = transform;    //近战子弹跟着角色移动
@@ -93,6 +95,7 @@ public class AttackMode_Enemy_01 : AAttackMode
             {
                 GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
                 bullentIns.GetComponent<ABullent>().life = life;
+                bullentIns.GetComponent<ABullent>().attackPoint = enemyControl.enemyAttackPoint * attackPointRatio;
                 if (isCloseAttack)
                 {
                     bullentIns.transform.parent = transform;

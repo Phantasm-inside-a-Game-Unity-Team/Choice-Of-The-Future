@@ -10,23 +10,28 @@ public class Bullent_Sakuya_03 : ABullent
     public float acceleration;          //弹幕加速度(近战弹幕为零)
     public float angularVelocity;       //弹幕角速度（近战武器砍人效果，回旋镖回旋效果）
     public Vector3 rotationCenter;      //旋转中心
-    public int attackPoint;             //弹幕攻击力
     public float bullentSize;           //攻击判定半径
     public GameObject hitEffect;        //命中特效
 
     Vector3 direction;                  //实际速度方向
     float startTime;                    //弹幕产生的时间点
-    public List<GameObject> enemies;    //场景中敌人列表
+    //public List<GameObject> enemies;    //场景中敌人列表(暂未使用)
     public int effect;                  //攻击效果
-    float deltaTime;
-    Vector3 startPosition;
-    float a;
+    public Animator bullentAnimator;    //爆炸动画机
+    float timeSinceLaunch;              //子弹发射后计时
+    Vector3 startPosition;              //子弹发射位置
+    float a;                            //抛物线方程二次项系数
+    float x;                            //抛物线方程自变量x
+    float y;                            //抛物线方程应变量y
+    float explodeStartTime;             //爆炸开始时间
+    List<Collider2D> hitEnemies=new List<Collider2D>();        //已经命中的敌人，为了只进行一次攻击判定
 
     // Use this for initialization
     void Start()
     {
         startPosition = transform.position;
         a = -4 * hight * velocity * velocity / distance / distance;
+        explodeStartTime = distance / velocity;
         startTime = Time.timeSinceLevelLoad;
         direction = transform.up;
         GetComponent<CircleCollider2D>().radius = bullentSize;
@@ -37,14 +42,14 @@ public class Bullent_Sakuya_03 : ABullent
     void Update()
     {
 
-        if ((Time.timeSinceLevelLoad - startTime) > life)
-        {
-            if ((Time.timeSinceLevelLoad - startTime) > (life + 0.1))
-            {
-                Destroy(gameObject);
-            }
-            return;
-        }
+        //if ((Time.timeSinceLevelLoad - startTime) > life)
+        //{
+        //    if ((Time.timeSinceLevelLoad - startTime) > (life + 0.1))
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //    return;
+        //}
         //CollisionDet();
         //transform.Translate(direction * Time.deltaTime, Space.World);
         BullentTranslate();
@@ -70,26 +75,44 @@ public class Bullent_Sakuya_03 : ABullent
 
     void BullentTranslate()
     {
+        timeSinceLaunch = Time.time - startTime;
         //抛物线计算方式见https://blog.csdn.net/somnusand/article/details/88630490
-        deltaTime += Time.deltaTime;
-        float x = deltaTime * velocity;
-        float y = a * deltaTime * deltaTime - a * (distance / velocity) * deltaTime;
-        if (y < 0)
+        if (timeSinceLaunch < explodeStartTime)
         {
-            Destroy(gameObject);
+            x = timeSinceLaunch * velocity;
+            y = a * timeSinceLaunch * timeSinceLaunch - a * (distance / velocity) * timeSinceLaunch;
+            transform.position = direction.normalized * x + Vector3.up * y + startPosition; //抛物线弹幕显示位置
+
+            transform.RotateAround(transform.position + Quaternion.AngleAxis(transform.eulerAngles.z, Vector3.forward) * rotationCenter, Vector3.forward, angularVelocity * Time.deltaTime);
+            velocity += acceleration;
+            //transform.Translate(velocity * Time.deltaTime * direction, Space.World);
         }
-        transform.position = direction.normalized * x + Vector3.up * y + startPosition;
-        transform.RotateAround(transform.position + Quaternion.AngleAxis(transform.eulerAngles.z, Vector3.forward) * rotationCenter, Vector3.forward, angularVelocity * Time.deltaTime);
-        velocity += acceleration;
-        //transform.Translate(velocity * Time.deltaTime * direction, Space.World);
+        else
+        {
+            bullentAnimator.SetBool("isExploded", true);
+            //子弹判定从0.16变大到0.4，用时0.1秒
+            GetComponent<CircleCollider2D>().radius = Mathf.Lerp(0.16f, 0.4f, (timeSinceLaunch - explodeStartTime) / 0.1f);
+            AnimatorStateInfo playerAniInfo = bullentAnimator.GetCurrentAnimatorStateInfo(0);
+            if (playerAniInfo.IsName("Explode") && playerAniInfo.normalizedTime > 1)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    //爆炸子弹需要使用Stay方法
+    void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.layer == 8)
+        if (timeSinceLaunch > explodeStartTime)
         {
-            collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
-            Destroy(gameObject);
+            if (collider.gameObject.layer == 8)
+            {
+                if (hitEnemies==null||!hitEnemies.Contains(collider))
+                {
+                    collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
+                    hitEnemies.Add(collider);
+                }
+            }
         }
     }
 }
