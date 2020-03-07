@@ -160,7 +160,7 @@ MonoBehaviour:
   attackModeName: Attack_Sakuya_01
   relativeLaunchPosition: {x: 0, y: 0.6, z: 0}
   relativeLaunchAngle: 0
-  bullentNumber: 3
+  bullentNumber: 1
   bullentRange: 20
   bullentWave: 1
   waveInterval: 0
@@ -3249,8 +3249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxLife: 10
   playerLife: 5
-  playerMaxHP: 10
-  playerHP: 10
+  playerMaxHP: 3
+  playerHP: 3
   maxPPoint: 5
   pPoint: 0
   maxBluePoint: 10
@@ -3303,6 +3303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1963960304}
   - component: {fileID: 1963960303}
+  - component: {fileID: 1963960305}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3342,6 +3343,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1963960305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963960302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f89a17ec106b8b4eacc86e66e199d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100290651
 GameObject:
   m_ObjectHideFlags: 0

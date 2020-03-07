@@ -27,12 +27,14 @@ public class Bullent_Sakuya_03 : ABullent
     List<Collider2D> hitEnemies=new List<Collider2D>();        //已经命中的敌人，为了只进行一次攻击判定
 
     // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         startPosition = transform.position;
         a = -4 * hight * velocity * velocity / distance / distance;
         explodeStartTime = distance / velocity;
         startTime = Time.timeSinceLevelLoad;
+        Debug.Log(startTime);
+        Debug.Log(startPosition);
         direction = transform.up;
         GetComponent<CircleCollider2D>().radius = bullentSize;
         //enemies = DemoSceneManager.Instance.enemies;
@@ -95,7 +97,8 @@ public class Bullent_Sakuya_03 : ABullent
             AnimatorStateInfo playerAniInfo = bullentAnimator.GetCurrentAnimatorStateInfo(0);
             if (playerAniInfo.IsName("Explode") && playerAniInfo.normalizedTime > 1)
             {
-                Destroy(gameObject);
+                bullentAnimator.SetBool("isExploded", false);
+                ObjectPool.Instance.PutObject(gameObject);
             }
         }
     }

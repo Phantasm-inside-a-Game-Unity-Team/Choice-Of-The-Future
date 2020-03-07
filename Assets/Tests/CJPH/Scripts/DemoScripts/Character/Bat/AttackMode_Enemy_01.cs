@@ -81,7 +81,8 @@ public class AttackMode_Enemy_01 : AAttackMode
         launchPosition = transform.position + Quaternion.AngleAxis(launchAngle, Vector3.forward) * relativeLaunchPosition; //计算旋转后的偏移位置
         if (bullentNumber == 1)
         {
-            GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
+            //GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
+            GameObject bullentIns = ObjectPool.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
             bullentIns.GetComponent<ABullent>().life = life;
             bullentIns.GetComponent<ABullent>().attackPoint = enemyControl.enemyAttackPoint * attackPointRatio;
             if (isCloseAttack)
@@ -93,7 +94,8 @@ public class AttackMode_Enemy_01 : AAttackMode
         {
             for (int i = 0; i < bullentNumber; i++)
             {
-                GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
+                //GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
+                GameObject bullentIns = ObjectPool.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
                 bullentIns.GetComponent<ABullent>().life = life;
                 bullentIns.GetComponent<ABullent>().attackPoint = enemyControl.enemyAttackPoint * attackPointRatio;
                 if (isCloseAttack)

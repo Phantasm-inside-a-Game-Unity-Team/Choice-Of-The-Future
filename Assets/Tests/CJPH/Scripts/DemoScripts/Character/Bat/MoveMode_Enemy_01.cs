@@ -16,7 +16,6 @@ public class MoveMode_Enemy_01 : AMoveMode
     void Start()
     {
         SetDirection(Vector2.down);  //角色默认朝下
-        player = DemoSceneManager.Instance.mainPlayer;
     }
 
     public override void Move()
@@ -26,7 +25,8 @@ public class MoveMode_Enemy_01 : AMoveMode
             rb.velocity = Vector2.zero;
             return;
         }
-           
+
+        player = DemoSceneManager.Instance.mainPlayer;
         if ((player.transform.position - transform.position).magnitude < enemyControl.hatredRange)
         {
             rb.velocity = Vector2.zero;

@@ -17,7 +17,7 @@ public class Bullent_Sakuya_01 : ABullent
     public int effect;                  //攻击效果
 
     // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         startTime = Time.timeSinceLevelLoad;
         direction = transform.up;
@@ -30,9 +30,8 @@ public class Bullent_Sakuya_01 : ABullent
     {
         if ((Time.timeSinceLevelLoad - startTime) > life)
         {
-            Destroy(gameObject);
+            ObjectPool.Instance.PutObject(gameObject);
         }
-        //CollisionDet();
         //transform.Translate(direction * Time.deltaTime, Space.World);
         BullentTranslate();
     }
@@ -68,6 +67,6 @@ public class Bullent_Sakuya_01 : ABullent
         {
             collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
         }
-        Destroy(gameObject);
+        ObjectPool.Instance.PutObject(gameObject);
     }
 }

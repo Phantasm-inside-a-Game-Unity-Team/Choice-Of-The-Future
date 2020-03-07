@@ -3,9 +3,11 @@ using System.Collections;
 
 public abstract class AMoveMode : MonoBehaviour
 {
+    public float moveSpeed;             //角色移动速度
     [HideInInspector]
     public bool isCannontMove;          //是否无法移动
-    public float moveSpeed;             //角色移动速度
+    [HideInInspector]
+    public bool isCannotSpecialMove;    //是否无法特殊移动
     [HideInInspector]
     public float directionAngle;        //角色朝向与y轴的夹角（角度值，逆时针为正向）
     [HideInInspector]

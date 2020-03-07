@@ -35,6 +35,8 @@ public class MoveMode_Player_Dash : AMoveMode
         isWalk = !(inputX == 0 && inputY == 0);
         if (Input.GetButtonDown("Dash") && isWalk && !isDash && (Time.timeSinceLevelLoad - dashStartTime - dashTime) > dashChargeTime)
         {
+            if (isCannotSpecialMove)
+                return;
             isDash = true;
             dashStartTime = Time.timeSinceLevelLoad;
             playerAnimator.SetBool("isDash", true);

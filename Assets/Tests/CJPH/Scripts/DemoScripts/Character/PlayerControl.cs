@@ -36,6 +36,8 @@ public class PlayerControl : MonoBehaviour
     public float playerSize;                    //玩家判定大小（暂时没用，使用的胶囊形碰撞体）
     [HideInInspector]
     public bool isDead;                         //玩家角色是否死亡
+    [HideInInspector]
+    public bool isChanging;                     //玩家正在切换角色
 
 
     // Use this for initialization
@@ -112,6 +114,8 @@ public class PlayerControl : MonoBehaviour
         isDead = false;
         playerAnimator.SetBool("isDead", false);
         GetComponent<CapsuleCollider2D>().enabled = true;
+        isChanging = false;
+        playerAnimator.SetBool("isChanging", false);
     }
     //没有残机时死亡
     void ManShenChuangYi()
@@ -121,17 +125,41 @@ public class PlayerControl : MonoBehaviour
     //角色切换判断
     void PlayerChange()
     {
+        if (isDead)
+            return;
         if (Input.GetButtonDown("Change") && timeAfterChange > playerChangeTime)
         {
             Debug.Log("change");
-            changePlayer.isMainPlayer = true;
-            changePlayer.gameObject.transform.position = transform.position;
-            changePlayer.playerMoveMode.SetDirection(playerMoveMode.characterDirection);
-            transform.position = new Vector3(0, 10, 0);
-            isMainPlayer = false;
-            timeAfterChange = 0;
-            DemoSceneManager.Instance.mainPlayer = changePlayer.gameObject;
-            DemoSceneManager.Instance.subPlayer = gameObject;
+            isChanging = true;
+            playerAnimator.SetBool("isChanging", true);
+            for (int i = 0; i < playerAttackModes.Count; i++)
+            {
+                playerAttackModes[i].isCannotAttack = true;
+            }
+            playerMoveMode.isCannotSpecialMove = true;
+        }
+        if (isChanging)
+        {
+            AnimatorStateInfo playerAniInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+            if (playerAniInfo.IsName("Change") && playerAniInfo.normalizedTime > 1.0f)
+            {
+                changePlayer.gameObject.SetActive(true);
+                changePlayer.isMainPlayer = true;
+                changePlayer.gameObject.transform.position = transform.position;
+                changePlayer.playerMoveMode.SetDirection(playerMoveMode.characterDirection);
+                isMainPlayer = false;
+                timeAfterChange = 0;
+                DemoSceneManager.Instance.mainPlayer = changePlayer.gameObject;
+                DemoSceneManager.Instance.subPlayer = gameObject;
+                gameObject.SetActive(false);
+                isChanging = false;
+                playerAnimator.SetBool("isChanging", false);
+                for (int i = 0; i < playerAttackModes.Count; i++)
+                {
+                    playerAttackModes[i].isCannotAttack = false;
+                }
+                playerMoveMode.isCannotSpecialMove = false;
+            }
         }
         timeAfterChange += Time.deltaTime;
     }
