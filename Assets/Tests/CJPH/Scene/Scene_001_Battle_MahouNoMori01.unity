@@ -216,8 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc810c5acef818345b27769e7a8f2898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCannontMove: 0
   moveSpeed: 3
+  isCannontMove: 0
+  isCannotSpecialMove: 0
   directionAngle: 0
   characterDirection: {x: 0, y: 0}
   playerControl: {fileID: 1420017499}
@@ -2426,6 +2427,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControl: {fileID: 1420017499}
+--- !u!1 &699329139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 699329140}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &699329140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699329139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.020411, y: 0.5741906, z: 0.061523438}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778159074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,8 +2500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef242965854086742b242e0d2c3c2704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCannontMove: 0
   moveSpeed: 3
+  isCannontMove: 0
+  isCannotSpecialMove: 0
   directionAngle: 0
   characterDirection: {x: 0, y: 0}
   playerControl: {fileID: 1920800556}
@@ -2797,6 +2829,7 @@ MonoBehaviour:
   playerHitMode: {fileID: 629013838}
   playerSize: 0
   isDead: 0
+  isChanging: 0
 --- !u!70 &1420017500
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3277,6 +3310,7 @@ MonoBehaviour:
   playerHitMode: {fileID: 414588498}
   playerSize: 0
   isDead: 0
+  isChanging: 0
 --- !u!70 &1920800557
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3304,6 +3338,7 @@ GameObject:
   - component: {fileID: 1963960304}
   - component: {fileID: 1963960303}
   - component: {fileID: 1963960305}
+  - component: {fileID: 1963960306}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3355,6 +3390,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f89a17ec106b8b4eacc86e66e199d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMaxCount: 20
+  objectPoolList: []
+  poolObjects: {fileID: 699329140}
+--- !u!114 &1963960306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963960302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7eb30f69d7dbb4a84a5da61b8265b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preLoadList:
+  - preLoadObj: {fileID: 2090525161919128463, guid: 2574f379b1411cb4d8a7eb7895630a1b,
+      type: 3}
+    preLoadCount: 50
+    maxCount: 50
+  - preLoadObj: {fileID: 2090525161919128463, guid: 6d99dff2de61d42408dd666dd04e1d1a,
+      type: 3}
+    preLoadCount: 10
+    maxCount: 50
+  - preLoadObj: {fileID: 2768504660609669083, guid: 6b85f76f2d7bf9f4a9a55eff8699ee9d,
+      type: 3}
+    preLoadCount: 2
+    maxCount: 50
+  - preLoadObj: {fileID: 4327968801639355055, guid: 68b8d7bee1794f24faa980228c5f93c8,
+      type: 3}
+    preLoadCount: 3
+    maxCount: 50
 --- !u!1 &2100290651
 GameObject:
   m_ObjectHideFlags: 0
@@ -5162,8 +5229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeedb3b492e37464fab893e3b0133433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCannontMove: 0
   moveSpeed: 1.5
+  isCannontMove: 0
+  isCannotSpecialMove: 0
   directionAngle: 0
   characterDirection: {x: 0, y: 0}
   enemyControl: {fileID: 399100702}

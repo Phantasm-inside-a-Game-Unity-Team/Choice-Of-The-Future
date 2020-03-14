@@ -82,7 +82,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
         if (bullentNumber == 1)
         {
             //GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
-            GameObject bullentIns = ObjectPool.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
+            GameObject bullentIns = ObjectPoolManager.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle));
             bullentIns.GetComponent<ABullent>().life = life;
             bullentIns.GetComponent<ABullent>().attackPoint = playerControl.playerAttackPoint * attackPointRatio;
             if (isCloseAttack)
@@ -95,7 +95,7 @@ public class AttackMode_Sakuya_01 : AAttackMode
             for (int i = 0; i < bullentNumber; i++)
             {
                 //GameObject bullentIns = (GameObject)Instantiate(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
-                GameObject bullentIns = ObjectPool.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
+                GameObject bullentIns = ObjectPoolManager.Instance.GetObject(bullentType, launchPosition, Quaternion.Euler(0, 0, launchAngle - bullentRange / 2 + i * bullentRange / (bullentNumber - 1)));
                 bullentIns.GetComponent<ABullent>().life = life;
                 bullentIns.GetComponent<ABullent>().attackPoint = playerControl.playerAttackPoint * attackPointRatio;
                 if (isCloseAttack)

@@ -30,7 +30,7 @@ public class Bullent_Sakuya_01 : ABullent
     {
         if ((Time.timeSinceLevelLoad - startTime) > life)
         {
-            ObjectPool.Instance.PutObject(gameObject);
+            ObjectPoolManager.Instance.PutObject(gameObject);
         }
         //transform.Translate(direction * Time.deltaTime, Space.World);
         BullentTranslate();
@@ -67,6 +67,6 @@ public class Bullent_Sakuya_01 : ABullent
         {
             collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
         }
-        ObjectPool.Instance.PutObject(gameObject);
+        ObjectPoolManager.Instance.PutObject(gameObject);
     }
 }

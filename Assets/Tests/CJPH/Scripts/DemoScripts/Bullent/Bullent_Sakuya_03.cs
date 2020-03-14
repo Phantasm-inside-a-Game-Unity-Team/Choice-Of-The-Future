@@ -33,8 +33,6 @@ public class Bullent_Sakuya_03 : ABullent
         a = -4 * hight * velocity * velocity / distance / distance;
         explodeStartTime = distance / velocity;
         startTime = Time.timeSinceLevelLoad;
-        Debug.Log(startTime);
-        Debug.Log(startPosition);
         direction = transform.up;
         GetComponent<CircleCollider2D>().radius = bullentSize;
         //enemies = DemoSceneManager.Instance.enemies;
@@ -98,7 +96,7 @@ public class Bullent_Sakuya_03 : ABullent
             if (playerAniInfo.IsName("Explode") && playerAniInfo.normalizedTime > 1)
             {
                 bullentAnimator.SetBool("isExploded", false);
-                ObjectPool.Instance.PutObject(gameObject);
+                ObjectPoolManager.Instance.PutObject(gameObject);
             }
         }
     }

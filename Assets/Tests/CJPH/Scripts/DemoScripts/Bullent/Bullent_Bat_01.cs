@@ -30,7 +30,7 @@ public class Bullent_Bat_01 : ABullent
     {
         if ((Time.timeSinceLevelLoad - startTime) > life)
         {
-            ObjectPool.Instance.PutObject(gameObject);
+            ObjectPoolManager.Instance.PutObject(gameObject);
         }
         //CollisionDet();
         //transform.Translate(direction * Time.deltaTime, Space.World);
@@ -68,6 +68,6 @@ public class Bullent_Bat_01 : ABullent
         {
             collider.gameObject.GetComponent<PlayerControl>().playerHitMode.BeHit(attackPoint, effect);
         }
-        ObjectPool.Instance.PutObject(gameObject);
+        ObjectPoolManager.Instance.PutObject(gameObject);
     }
 }

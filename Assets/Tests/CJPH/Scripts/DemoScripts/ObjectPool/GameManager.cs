@@ -11,7 +11,7 @@ public class GameManager : SingletonTemplate<GameManager>
     void Start()
     {
         //预热
-        ObjectPool.Instance.Preload(testObject, 500);
+        ObjectPoolManager.Instance.Preload(testObject, 500,500);
     }
 
     void Update()
@@ -74,8 +74,8 @@ public class GameManager : SingletonTemplate<GameManager>
                 int x = Random.Range(-30, 30);
                 int y = Random.Range(-30, 30);
                 int z = Random.Range(-30, 30);
-                GameObject newObject = ObjectPool.Instance.GetObject(testObject, new Vector3(x, y, z), Quaternion.identity);
-                ObjectPool.Instance.PutObject(newObject);
+                GameObject newObject = ObjectPoolManager.Instance.GetObject(testObject, new Vector3(x, y, z), Quaternion.identity);
+                ObjectPoolManager.Instance.PutObject(newObject);
             }
             yield return null;
             t += Time.deltaTime;

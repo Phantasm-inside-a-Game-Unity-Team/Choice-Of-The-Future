@@ -32,7 +32,7 @@ public class Bullent_Sakuya_02 : ABullent
         {
             if ((Time.timeSinceLevelLoad - startTime) > (life + 0.1))
             {
-                ObjectPool.Instance.PutObject(gameObject);
+                ObjectPoolManager.Instance.PutObject(gameObject);
             }
             return;
         }
