@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Bullent_Bat_01 : ABullent
 {
@@ -15,6 +16,7 @@ public class Bullent_Bat_01 : ABullent
     float startTime;                    //弹幕产生的时间点
     //public List<GameObject> enemies;    //场景中敌人列表
     public int effect;                  //攻击效果
+    public BuffPoisonPara buffPara;
 
     // Use this for initialization
     void OnEnable()
@@ -66,7 +68,10 @@ public class Bullent_Bat_01 : ABullent
     {
         if (collider.gameObject.layer == 10)
         {
-            collider.gameObject.GetComponent<PlayerControl>().playerHitMode.BeHit(attackPoint, effect);
+            PlayerControl playerControl=collider.gameObject.GetComponent<PlayerControl>();
+            playerControl.playerHitMode.BeHit(attackPoint, effect);
+            PlayerBuffPoison buff = new PlayerBuffPoison(playerControl,buffPara);
+            playerControl.AddBuff(buff);
         }
         ObjectPoolManager.Instance.PutObject(gameObject);
     }

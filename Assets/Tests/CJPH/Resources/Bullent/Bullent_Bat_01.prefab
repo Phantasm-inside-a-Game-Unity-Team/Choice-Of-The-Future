@@ -95,15 +95,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
+  attackPoint: 1
   velocity: 5
   acceleration: 0
   angularVelocity: 0
   rotationCenter: {x: 0, y: 1, z: 0}
-  attackPoint: 1
   bullentSize: 0.15
   hitEffect: {fileID: 0}
-  enemies: []
   effect: 0
+  buffPara:
+    buffTime: 3
+    minusHP: 0.5
+    effectGapTime: 1
 --- !u!58 &6206186041567612485
 CircleCollider2D:
   m_ObjectHideFlags: 0

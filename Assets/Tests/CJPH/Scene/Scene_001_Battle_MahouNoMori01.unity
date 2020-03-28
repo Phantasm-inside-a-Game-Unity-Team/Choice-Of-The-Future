@@ -1314,7 +1314,7 @@ Transform:
   - {fileID: 467152385}
   - {fileID: 1838033189}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &399100702
 MonoBehaviour:
@@ -2749,7 +2749,7 @@ Transform:
   - {fileID: 787464895}
   - {fileID: 1049036255}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1420017497
 Animator:
@@ -2813,6 +2813,7 @@ MonoBehaviour:
   bluePoint: 0
   maxBeer: 10
   beer: 0
+  buffList: []
   isMainPlayer: 0
   changePlayer: {fileID: 1920800556}
   playerChangeTime: 0.5
@@ -3290,6 +3291,7 @@ MonoBehaviour:
   bluePoint: 0
   maxBeer: 10
   beer: 0
+  buffList: []
   isMainPlayer: 1
   changePlayer: {fileID: 1420017499}
   playerChangeTime: 0.5

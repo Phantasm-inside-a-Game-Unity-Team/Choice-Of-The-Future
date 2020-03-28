@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     public float bluePoint;                     //角色当前蓝点
     public int maxBeer;                         //回血道具最大携带量
     public int beer;                            //回血道具当前数量
+    public List<ABuff> buffList;                //所有BUFF的列表
 
     public bool isMainPlayer;                   //是否是主角色
     public PlayerControl changePlayer;          //可更换的角色
@@ -43,7 +44,7 @@ public class PlayerControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        buffList = new List<ABuff>();
     }
 
     // Update is called once per frame
@@ -51,8 +52,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (!isMainPlayer)
             return;
-        PlayerChange();
+
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].OnBuffUpdate();
+        }
         IsAlive();
+        PlayerChange();
         ParameterCalculate();
         for (int i = 0; i < attackButtons.Count; i++)
         {
@@ -116,6 +122,10 @@ public class PlayerControl : MonoBehaviour
         GetComponent<CapsuleCollider2D>().enabled = true;
         isChanging = false;
         playerAnimator.SetBool("isChanging", false);
+        while(buffList.Count>0)
+        {
+            RemoveBuff(buffList[0]);
+        }
     }
     //没有残机时死亡
     void ManShenChuangYi()
@@ -162,6 +172,21 @@ public class PlayerControl : MonoBehaviour
             }
         }
         timeAfterChange += Time.deltaTime;
+    }
+    //添加BUFF
+    public void AddBuff(ABuff buff)
+    {
+        buffList.Add(buff);
+        buff.OnBuffAdd();
+    }
+    //移除BUFF
+    public void RemoveBuff(ABuff buff)
+    {
+        if (buffList.Contains(buff))
+        {
+            buffList.Remove(buff);
+            buff.OnBuffRemove();
+        }
     }
 
     //设置攻击、移动、被击模式
