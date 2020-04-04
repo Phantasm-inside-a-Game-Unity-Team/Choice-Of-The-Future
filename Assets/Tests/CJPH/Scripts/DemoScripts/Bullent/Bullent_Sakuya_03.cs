@@ -13,6 +13,10 @@ public class Bullent_Sakuya_03 : ABullent
     public float bullentSize;           //攻击判定半径
     public GameObject hitEffect;        //命中特效
 
+    public List<ABuff> buffList;        //弹幕上所有会触发的buff效果列表
+    public BuffType thisBuffType;       //弹幕初始自带的buff类型
+    public List<float> thisBuffPara;    //弹幕初始自带的buff参数
+
     Vector3 direction;                  //实际速度方向
     float startTime;                    //弹幕产生的时间点
     //public List<GameObject> enemies;    //场景中敌人列表(暂未使用)
@@ -25,6 +29,11 @@ public class Bullent_Sakuya_03 : ABullent
     float y;                            //抛物线方程应变量y
     float explodeStartTime;             //爆炸开始时间
     List<Collider2D> hitEnemies=new List<Collider2D>();        //已经命中的敌人，为了只进行一次攻击判定
+
+    void Awake()
+    {
+        buffList = new List<ABuff>();
+    }
 
     // Use this for initialization
     void OnEnable()
@@ -110,8 +119,15 @@ public class Bullent_Sakuya_03 : ABullent
             {
                 if (hitEnemies==null||!hitEnemies.Contains(collider))
                 {
-                    collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint, effect);
+                    EnemyControl enemyControl = collider.gameObject.GetComponent<EnemyControl>();
+                    enemyControl.enemyHitMode.BeHit(attackPoint, effect);
                     hitEnemies.Add(collider);
+
+                    buffList.Add(BuffGroup.CreateBuff(enemyControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
+                    foreach (ABuff buff in buffList)    //将所有buff加到角色上
+                    {
+                        enemyControl.AddBuff(buff);
+                    }
                 }
             }
         }

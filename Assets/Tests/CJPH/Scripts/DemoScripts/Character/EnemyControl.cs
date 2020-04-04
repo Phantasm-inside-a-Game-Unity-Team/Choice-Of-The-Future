@@ -19,15 +19,21 @@ public class EnemyControl : MonoBehaviour
     public List<GameObject> itemDropped;        //掉落物品
     [Range(0,1)]
     public List<float> droppedRate;             //掉落率
+    public List<ABuff> buffList;                //所有BUFF的列表
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
+        buffList = new List<ABuff>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].OnBuffUpdate();
+        }
         IsAlive();
         for (int i = 0; i < enemyAttackModes.Count; i++)
         {
@@ -61,6 +67,23 @@ public class EnemyControl : MonoBehaviour
             }
         }
     }
+
+    //添加BUFF
+    public void AddBuff(ABuff buff)
+    {
+        buffList.Add(buff);
+        buff.OnBuffAdd();
+    }
+    //移除BUFF
+    public void RemoveBuff(ABuff buff)
+    {
+        if (buffList.Contains(buff))
+        {
+            buffList.Remove(buff);
+            buff.OnBuffRemove();
+        }
+    }
+
     public void SetAttackMode(AAttackMode attackMode, int index)
     {
         enemyAttackModes[index] = attackMode;

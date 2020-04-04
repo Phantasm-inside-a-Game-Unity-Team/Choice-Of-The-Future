@@ -2813,7 +2813,6 @@ MonoBehaviour:
   bluePoint: 0
   maxBeer: 10
   beer: 0
-  buffList: []
   isMainPlayer: 0
   changePlayer: {fileID: 1920800556}
   playerChangeTime: 0.5
@@ -3291,7 +3290,6 @@ MonoBehaviour:
   bluePoint: 0
   maxBeer: 10
   beer: 0
-  buffList: []
   isMainPlayer: 1
   changePlayer: {fileID: 1420017499}
   playerChangeTime: 0.5

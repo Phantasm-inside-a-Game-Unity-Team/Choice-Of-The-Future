@@ -16,7 +16,15 @@ public class Bullent_Bat_01 : ABullent
     float startTime;                    //弹幕产生的时间点
     //public List<GameObject> enemies;    //场景中敌人列表
     public int effect;                  //攻击效果
-    public BuffPoisonPara buffPara;
+
+    public List<ABuff> buffList;        //弹幕上所有会触发的buff效果列表
+    public BuffType thisBuffType;       //弹幕初始自带的buff类型
+    public List<float> thisBuffPara;    //弹幕初始自带的buff参数
+
+    void Awake()
+    {
+        buffList = new List<ABuff>();
+    }
 
     // Use this for initialization
     void OnEnable()
@@ -24,6 +32,7 @@ public class Bullent_Bat_01 : ABullent
         startTime = Time.timeSinceLevelLoad;
         direction = transform.up;
         GetComponent<CircleCollider2D>().radius = bullentSize;
+        buffList.Clear();
         //enemies = DemoSceneManager.Instance.enemies;
     }
 
@@ -68,10 +77,14 @@ public class Bullent_Bat_01 : ABullent
     {
         if (collider.gameObject.layer == 10)
         {
-            PlayerControl playerControl=collider.gameObject.GetComponent<PlayerControl>();
+            PlayerControl playerControl = collider.gameObject.GetComponent<PlayerControl>();
             playerControl.playerHitMode.BeHit(attackPoint, effect);
-            PlayerBuffPoison buff = new PlayerBuffPoison(playerControl,buffPara);
-            playerControl.AddBuff(buff);
+
+            buffList.Add(BuffGroup.CreateBuff(playerControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
+            foreach (ABuff buff in buffList)    //将所有buff加到角色上
+            {
+                playerControl.AddBuff(buff);
+            }
         }
         ObjectPoolManager.Instance.PutObject(gameObject);
     }

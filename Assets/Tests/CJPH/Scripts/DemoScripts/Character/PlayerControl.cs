@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         buffList = new List<ABuff>();
     }
@@ -122,7 +122,7 @@ public class PlayerControl : MonoBehaviour
         GetComponent<CapsuleCollider2D>().enabled = true;
         isChanging = false;
         playerAnimator.SetBool("isChanging", false);
-        while(buffList.Count>0)
+        while (buffList.Count > 0)
         {
             RemoveBuff(buffList[0]);
         }

@@ -103,10 +103,9 @@ MonoBehaviour:
   bullentSize: 0.15
   hitEffect: {fileID: 0}
   effect: 0
-  buffPara:
-    buffTime: 3
-    minusHP: 0.5
-    effectGapTime: 1
+  thisBuffType: 1
+  thisBuffPara:
+  - 1
 --- !u!58 &6206186041567612485
 CircleCollider2D:
   m_ObjectHideFlags: 0
