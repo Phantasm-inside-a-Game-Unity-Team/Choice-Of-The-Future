@@ -6,6 +6,7 @@ public enum BuffType
 {
     Poison,
     Stun,
+    Shield,
     Blank
 }
 
@@ -19,6 +20,8 @@ public class BuffGroup
                 return new BuffPoison(playerControl, buffParaList);
             case BuffType.Stun:
                 return new BuffStun(playerControl, buffParaList);
+            case BuffType.Shield:
+                return new BuffShield(playerControl, buffParaList);
             case BuffType.Blank:
                 return new BuffBlank(playerControl);
             default:
@@ -35,6 +38,8 @@ public class BuffGroup
                 return new BuffPoison(enemyControl, buffParaList);
             case BuffType.Stun:
                 return new BuffStun(enemyControl, buffParaList);
+            case BuffType.Shield:
+                return new BuffShield(enemyControl, buffParaList);
             case BuffType.Blank:
                 return new BuffBlank(enemyControl);
             default:

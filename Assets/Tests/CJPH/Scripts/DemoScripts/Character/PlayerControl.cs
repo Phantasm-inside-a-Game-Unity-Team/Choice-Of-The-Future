@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     public float playerLife;                    //玩家残机
     public float playerMaxHP;                   //玩家最大HP
     public float playerHP;                      //玩家当前HP
+    public float shieldHP;                      //护盾HP
     public float maxPPoint;                     //角色最大P点
     public float pPoint;                        //角色当前P点
     public float maxBluePoint;                  //角色最大蓝点
@@ -39,6 +40,9 @@ public class PlayerControl : MonoBehaviour
     public bool isDead;                         //玩家角色是否死亡
     [HideInInspector]
     public bool isChanging;                     //玩家正在切换角色
+    [HideInInspector]
+    public bool isInvulnerable;                 //玩家角色是否无敌
+    
 
 
     // Use this for initialization
@@ -176,15 +180,14 @@ public class PlayerControl : MonoBehaviour
     //添加BUFF
     public void AddBuff(ABuff buff)
     {
-        buffList.Add(buff);
         buff.OnBuffAdd();
+        Debug.Log("Player get " + buff.buffType.ToString() + " buff");
     }
     //移除BUFF
     public void RemoveBuff(ABuff buff)
     {
         if (buffList.Contains(buff))
         {
-            buffList.Remove(buff);
             buff.OnBuffRemove();
         }
     }

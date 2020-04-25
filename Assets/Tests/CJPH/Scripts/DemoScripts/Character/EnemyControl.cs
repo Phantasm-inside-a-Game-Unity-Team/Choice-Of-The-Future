@@ -6,6 +6,7 @@ public class EnemyControl : MonoBehaviour
 {
     public float enemyMaxHP;                    //敌人最大HP
     public float enemyHP;                       //敌人当前HP
+    public float shieldHP;                      //敌人护盾HP
     public Animator enemyAnimator;              //敌人角色动画机
     public List<AAttackMode> enemyAttackModes;  //敌人攻击模块
     public AMoveMode enemyMoveMode;             //敌人移动模块

@@ -5,11 +5,11 @@ using UnityEditor;
 
 public class BuffStun : ABuff
 {
-    public PlayerControl playerControl;
-    public EnemyControl enemyControl;
-    public float buffTime;
-    float timeElapsed;
-    GameObject stunPrefab;
+    private PlayerControl playerControl;
+    private EnemyControl enemyControl;
+    private float buffTime;         //buff持续时间
+    private float timerA;           //用来对晕眩buff持续总时间的计时
+    private GameObject stunPrefab;  //晕眩动画预设体
 
     public BuffStun(PlayerControl initPlayerControl, List<float> buffParaList)
     {
@@ -22,7 +22,7 @@ public class BuffStun : ABuff
         {
             buffTime = 2;
         }
-
+        buffType = BuffType.Stun;
     }
     public BuffStun(EnemyControl initEnemyControl, List<float> buffParaList)
     {
@@ -35,50 +35,64 @@ public class BuffStun : ABuff
         {
             buffTime = 2;
         }
-
+        buffType = BuffType.Stun;
     }
-
 
     public override void OnBuffAdd()
     {
         if (playerControl != null)
         {
-            stunPrefab = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Tests/CJPH/Resources/Stun/Stun.prefab", typeof(GameObject)));
-            stunPrefab.transform.parent = playerControl.transform;
-            stunPrefab.transform.localPosition = new Vector3(0, 0.5f, 0);
-            foreach (AAttackMode attackMode in playerControl.playerAttackModes)
+            BuffStun buffStun = (BuffStun)playerControl.buffList.Find((ABuff buff) => buff.buffType == BuffType.Stun);
+            if (buffStun == null)
             {
-                attackMode.isCannotAttack = true;
+                playerControl.buffList.Add(this);
+                foreach (AAttackMode attackMode in playerControl.playerAttackModes)
+                {
+                    attackMode.isCannotAttack = true;
+                }
+                playerControl.playerMoveMode.isCannontMove = true;
+                stunPrefab = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Tests/CJPH/Resources/Stun/Stun.prefab", typeof(GameObject)));
+                stunPrefab.transform.parent = playerControl.transform;
+                stunPrefab.transform.localPosition = new Vector3(0, 0.5f, 0);
+                playerControl.GetComponent<Animator>().SetBool("isWalk", false);
             }
-            playerControl.playerMoveMode.isCannontMove = true;
+            else
+            {
+                buffStun.timerA = 0;
+            }
         }
         if (enemyControl != null)
         {
-            stunPrefab = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Tests/CJPH/Resources/Stun/Stun.prefab", typeof(GameObject)));
-            stunPrefab.transform.parent = enemyControl.transform;
-            stunPrefab.transform.localPosition = new Vector3(0, 0.5f, 0);
-            foreach (AAttackMode attackMode in enemyControl.enemyAttackModes)
+            BuffStun buffStun = (BuffStun)enemyControl.buffList.Find((ABuff buff) => buff.buffType == BuffType.Stun);
+            if (buffStun == null)
             {
-                attackMode.isCannotAttack = true;
+                enemyControl.buffList.Add(this);
+                foreach (AAttackMode attackMode in enemyControl.enemyAttackModes)
+                {
+                    attackMode.isCannotAttack = true;
+                }
+                enemyControl.enemyMoveMode.isCannontMove = true;
+                stunPrefab = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Tests/CJPH/Resources/Stun/Stun.prefab", typeof(GameObject)));
+                stunPrefab.transform.parent = enemyControl.transform;
+                stunPrefab.transform.localPosition = new Vector3(0, 0.5f, 0);
             }
-            enemyControl.enemyMoveMode.isCannontMove = true;
         }
     }
 
     public override void OnBuffUpdate()
     {
-        if (timeElapsed > buffTime)
+        if (timerA > buffTime)
         {
             if (playerControl != null)
             {
-                playerControl.RemoveBuff(this);
+                OnBuffRemove();
             }
             if (enemyControl != null)
             {
-                enemyControl.RemoveBuff(this);
+                OnBuffRemove();
             }
         }
-        timeElapsed += Time.deltaTime;
+        timerA += Time.deltaTime;
     }
 
     public override void OnBuffRemove()
@@ -90,6 +104,7 @@ public class BuffStun : ABuff
                 attackMode.isCannotAttack = false;
             }
             playerControl.playerMoveMode.isCannontMove = false;
+            playerControl.buffList.Remove(this);
         }
         if (enemyControl != null)
         {
@@ -98,7 +113,8 @@ public class BuffStun : ABuff
                 attackMode.isCannotAttack = false;
             }
             enemyControl.enemyMoveMode.isCannontMove = false;
-        }
+            enemyControl.buffList.Remove(this);
+        }        
         GameObject.Destroy(stunPrefab);
     }
 }
