@@ -26,7 +26,7 @@ public class Player:MonoBehaviour
     //总蓝点数
     public float point;
     //当前蓝点数
-    public float point_Current;
+    public float pointCurrent;
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class Player:MonoBehaviour
         power = 100;
         power_Current = 100;
         point = 100;
-        point_Current = 100;
+        pointCurrent = 100;
 
     }
     //最基本的Getter和Setter
@@ -51,7 +51,7 @@ public class Player:MonoBehaviour
     }
     public float GetPoint()
     {
-        return point_Current;
+        return pointCurrent;
     }
     public float GetPower()
     {

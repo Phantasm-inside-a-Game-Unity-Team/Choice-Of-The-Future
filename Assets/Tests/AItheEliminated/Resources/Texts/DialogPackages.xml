@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+此处大概讲一下游戏文本的存储逻辑
+游戏当中有很多用到文本的地方，有些可以简单地放在代码里面，但是很多游戏对话、剧情等的文本以及其他文本，
+都需要放在文件里面来读写。这样在我看来主要是为了游戏架构更明确，以及提高可扩展性，毕竟东西不能写死。
+
+文本必须以富有层次的形式放置在文件里面，XML应该功能够我们用了。
+每一层标签及其属性的含义：
+  DialogPackages：包含很多文本包，其中就有对话包。
+    packageName：该对话包的标记名，一般用于某一特定角色的对话包。
+    packageClass：该对话包的类名，意思是说该对话包适用于的某类对象的通用的对话包。
+  DialogPackage：一个对话包，包含一个完整的对话树，其中有开始、中间、分支、结束等，用属性来标记该对话包的用途以及其他信息。
+  DialogTexts：一个对话包中的对话部分，包括其中各种不同用途的对话文本。
+    
+  DialogText：一句话的对话文本，对话框一次性显示的量。
+    TextTag：用于标识该文本的特殊行为，比如"StartText"标记该对话文本为一段对话的开始文本。
+    TextSequenceID：表示一串对话的顺序，实际上在包括分支的情况下，就是文本在该对话树的层数。
+  DialogTextBranch：有分支的一句对话文本，属性同DialogText。
+  
+  DialogTextSelection：对话出现分支时的选项之一，在DialogTextBranch里面和DialogText一起被用。
+    SelectionID：标记选项的顺序。
+    
+-->
+<Packages>
+   <DialogPackage packageName="VeryFirstDialogPackage" packageClass="SamplePackage" packageID="0">
+       <DialogText TextTag="StartText" TextSequenceID="0">
+         我不知道
+       </DialogText>
+      <DialogText  TextTag="BranchText" TextSequenceID="1">
+        <DialogTextQuest>
+          你是谁？
+        </DialogTextQuest>
+        <DialogTextSelection SelectionID="0">
+          胡锦涛
+        </DialogTextSelection>
+        <DialogTextSelection SelectionID="1"> 
+          江泽民
+        </DialogTextSelection>
+      </DialogText>
+       <DialogText TextTag="EndinText" TextSequenceID="2">
+         心情难以平复...
+       </DialogText>
+  </DialogPackage>
+  
+  
+</Packages>

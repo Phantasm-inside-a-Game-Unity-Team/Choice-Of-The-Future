@@ -57,27 +57,27 @@ public class PlayerController : MonoBehaviour
 
         inputInteraction = Input.GetAxisRaw("Interact");
 
-            Ray2D ray = new Ray2D(transform.position, rb.velocity.normalized);
-            RaycastHit2D[] infos = Physics2D.RaycastAll(ray.origin, ray.direction, 10f);
-            Debug.DrawRay(ray.origin,ray.direction,Color.blue);
-            foreach (RaycastHit2D info in infos)
+        Ray2D ray = new Ray2D(transform.position, rb.velocity.normalized);
+        RaycastHit2D[] infos = Physics2D.RaycastAll(ray.origin, ray.direction, 10f);
+        Debug.DrawRay(ray.origin,ray.direction,Color.blue);
+        foreach (RaycastHit2D info in infos)
+        {
+            if (info.collider != null)
             {
-                if (info.collider != null)
+                if (info.transform.gameObject.tag == "NPC" && inputInteraction != 0)
                 {
-                    if (info.transform.gameObject.tag == "NPC" && inputInteraction != 0)
-                    {
-                        aimNPC = info.transform.gameObject;
-                        aimNPC.GetComponent<DialogBox>().OpenDialogBox();
-                        Debug.Log("对话！");
-                    }
-                }
-                else
-                {
-                    Debug.Log("没有碰撞任何对象");
+                    aimNPC = info.transform.gameObject;
+                    aimNPC.GetComponent<DialogBox>().OpenDialogBox();
+                    Debug.Log("对话！");
                 }
             }
-            Debug.DrawRay(gameObject.transform.position, ray.direction, Color.blue);
+            else
+            {
+                Debug.Log("没有碰撞任何对象");
+            }
         }
+        Debug.DrawRay(gameObject.transform.position, ray.direction, Color.blue);
+    }
         
     
 

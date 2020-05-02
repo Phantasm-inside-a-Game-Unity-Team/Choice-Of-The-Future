@@ -43,9 +43,6 @@ public class PlayerHUD : MonoBehaviour
     public Image enemyValue_Current;
     //敌人血条的阴影当前长度
     public Image enemyValue_Shadow;
-
-
-
     //防止数据脏读的锁
     public static object locker = new System.Object();
     //值监视器
@@ -100,7 +97,7 @@ public class PlayerHUD : MonoBehaviour
             LifeMarks[playerState.lifeCounts_Current - 1].transform.localScale = new Vector3(tempScale, tempScale, tempScale);
         }
         powerValue_Current.fillAmount = playerState.power_Current / playerState.power;
-        pointValue_Current.fillAmount = playerState.point_Current / playerState.point;
+        pointValue_Current.fillAmount = playerState.pointCurrent / playerState.point;
     }
     //条的量减少时施加的渐变效果
     private void BarChange()

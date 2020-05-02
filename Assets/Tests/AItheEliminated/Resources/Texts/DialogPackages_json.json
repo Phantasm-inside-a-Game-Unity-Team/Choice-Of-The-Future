@@ -1,0 +1,51 @@
+{
+  "DialogPackages": [
+    {
+      "DialogPackage_Test": [
+        {
+          "PackageID": 1,
+          "PackageName": "TestPackage"
+        },
+        {
+          "Text": "我打你妈的",
+          "TextID": 1,
+          "NextTextID": 2,
+          "IfBranch": false,
+          "Mark": "StartOfDialog"
+        },
+        {
+          "Text": "那没事了",
+          "TextID": 2,
+          "NextTextID": 3,
+          "IfBranch": true,
+          "Selection1": "???",
+          "Selection1toID": 3,
+          "Selection2": "???",
+          "Selection2toID": 3,
+          "Selection3": "???",
+          "Selection3toID": 3,
+          "Selection4": "???",
+          "Selection4toID": 3,
+          "Mark": "InDialog"
+        },
+        {
+          "Text": "肥牛面搭配",
+          "TextID": 3,
+          "NextTextID": 4,
+          "IfBranch": false,
+          "Mark": "InDialog"
+        },
+        {
+          "Text": "柠檬水露",
+          "TextID": 4,
+          "NextTextID": 0,
+          "IfBranch": false,
+          "Mark": "EndinOfDialog"
+        }
+      ]
+    },
+    {
+      "DialogPackage": [
+      ]
+    }
+  ]}
