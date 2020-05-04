@@ -129,11 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
   m_IsActive: 1
-=======
-  m_IsActive: 0
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
 --- !u!212 &147349581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -217,9 +213,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 3
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 --- !u!95 &307198141
 Animator:
   serializedVersion: 3
@@ -412,9 +405,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
-=======
->>>>>>> 72e0c15fd4d93b0f8f6cb33182cfda8cffb6db9e
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,11 +513,8 @@ GameObject:
   - component: {fileID: 573232901}
   - component: {fileID: 573232900}
   m_Layer: 0
-<<<<<<< HEAD
   m_Name: Tilemap
-=======
   m_Name: Background
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,11 +528,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573232898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
-=======
   m_LocalPosition: {x: 0, y: 0, z: 1}
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1863169830}
@@ -585,22 +569,16 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-<<<<<<< HEAD
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< HEAD
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
-=======
-=======
   m_SortingLayerID: 83360741
   m_SortingLayer: -1
->>>>>>> 72e0c15fd4d93b0f8f6cb33182cfda8cffb6db9e
   m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.25301206, y: 0.25301206, z: 0}
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -615,7 +593,6 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573232898}
   m_Enabled: 1
-<<<<<<< HEAD
   m_Tiles: {}
   m_AnimatedTiles: {}
   m_TileAssetArray: []
@@ -626,7 +603,6 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
-=======
   m_Tiles:
   - first: {x: -9, y: -6, z: 0}
     second:
@@ -2812,7 +2788,6 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -12, y: -7, z: 0}
   m_Size: {x: 21, y: 15, z: 1}
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -2843,11 +2818,8 @@ GameObject:
   - component: {fileID: 1863169830}
   - component: {fileID: 1863169829}
   m_Layer: 0
-<<<<<<< HEAD
   m_Name: Grid
-=======
   m_Name: Map
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2861,11 +2833,8 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863169828}
   m_Enabled: 1
-<<<<<<< HEAD
   m_CellSize: {x: 1, y: 1, z: 0}
-=======
   m_CellSize: {x: 1.5, y: 1.5, z: 0}
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -2881,7 +2850,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 573232899}
-<<<<<<< HEAD
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3023,7 +2991,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90837f8efc9ffe45b2a01c509a4b525, type: 3}
-=======
   - {fileID: 1655191379}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -3100,7 +3067,6 @@ PrefabInstance:
 --- !u!1001 &9208629282291595531
 PrefabInstance:
   m_ObjectHideFlags: 0
-<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3120,8 +3086,6 @@ PrefabInstance:
   right: 0
   up: 0
   down: 0
->>>>>>> 12392f9bf315f5d2a75219962082b2397eb1d9de
-=======
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
@@ -3188,4 +3152,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f467a2afb44f01429da3ca82d79594f, type: 3}
->>>>>>> 72e0c15fd4d93b0f8f6cb33182cfda8cffb6db9e
