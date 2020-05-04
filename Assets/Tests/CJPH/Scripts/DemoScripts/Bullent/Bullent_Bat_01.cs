@@ -80,8 +80,6 @@ public class Bullent_Bat_01 : ABullent
             PlayerControl playerControl = collider.gameObject.GetComponentInParent<PlayerControl>();
             if (!playerControl.isInvulnerable)
             {
-                playerControl.playerHitMode.BeHit(attackPoint, effect);
-
                 if (playerControl.shieldHP <= 0)
                 {
                     buffList.Add(BuffGroup.CreateBuff(playerControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
@@ -90,6 +88,8 @@ public class Bullent_Bat_01 : ABullent
                         playerControl.AddBuff(buff);
                     }
                 }
+
+                playerControl.playerHitMode.BeHit(attackPoint, effect);
             }
         }
         ObjectPoolManager.Instance.PutObject(gameObject);

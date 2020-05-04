@@ -14,27 +14,30 @@ public class EnemyControl : MonoBehaviour
     public float enemySize;                     //敌人判定大小（暂时没用，使用的圆形碰撞体）
     public float enemyAttackPoint;              //敌人攻击力
     public float enemyDefensePoint;             //敌人防御力
-    [HideInInspector]
-    public bool isDead;                         //敌人角色是否死亡
     public float hatredRange;                   //仇恨距离
     public List<GameObject> itemDropped;        //掉落物品
     [Range(0,1)]
     public List<float> droppedRate;             //掉落率
-    public List<ABuff> buffList;                //所有BUFF的列表
+    [HideInInspector]
+    public List<ABuff> buffList;                //所有buff的列表
+    [HideInInspector]
+    public List<ABuff> buffRemoveList;          //当前要移除的buff列表
+    [HideInInspector]
+    public bool isDead;                         //敌人角色是否死亡
+    [HideInInspector]
+    public bool isInvulnerable;                 //敌人角色是否无敌
 
     // Use this for initialization
     void Awake()
     {
         buffList = new List<ABuff>();
+        buffRemoveList = new List<ABuff>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < buffList.Count; i++)
-        {
-            buffList[i].OnBuffUpdate();
-        }
+        BuffUpdate();
         IsAlive();
         for (int i = 0; i < enemyAttackModes.Count; i++)
         {
@@ -42,6 +45,22 @@ public class EnemyControl : MonoBehaviour
         }
         enemyMoveMode.Move();
         enemyHitMode.Hit();
+    }
+
+    //buff相关计算
+    private void BuffUpdate()
+    {
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].OnBuffUpdate();
+        }
+        if (buffRemoveList.Count != 0)
+        {
+            foreach (ABuff buff in buffRemoveList)
+            {
+                RemoveBuff(buff);
+            }
+        }
     }
     void IsAlive()
     {
@@ -72,7 +91,6 @@ public class EnemyControl : MonoBehaviour
     //添加BUFF
     public void AddBuff(ABuff buff)
     {
-        buffList.Add(buff);
         buff.OnBuffAdd();
     }
     //移除BUFF
@@ -80,7 +98,6 @@ public class EnemyControl : MonoBehaviour
     {
         if (buffList.Contains(buff))
         {
-            buffList.Remove(buff);
             buff.OnBuffRemove();
         }
     }

@@ -17,7 +17,6 @@ public class PlayerControl : MonoBehaviour
     public float bluePoint;                     //角色当前蓝点
     public int maxBeer;                         //回血道具最大携带量
     public int beer;                            //回血道具当前数量
-    public List<ABuff> buffList;                //所有BUFF的列表
 
     public bool isMainPlayer;                   //是否是主角色
     public PlayerControl changePlayer;          //可更换的角色
@@ -25,30 +24,34 @@ public class PlayerControl : MonoBehaviour
     float timeAfterChange;                      //记录一次更换后的时间
     public float playerBaseAtk;                 //角色基础攻击力
     public float playerBaseDef;                 //角色基础防御力
-    [HideInInspector]
-    public float playerAttackPoint;             //角色攻击力
-    [HideInInspector]
-    public float playerDefensePoint;            //角色防御力
-
+    public float playerSize;                    //玩家判定大小（暂时没用，使用的胶囊形碰撞体）
     public Animator playerAnimator;             //角色动画机
+
     public List<string> attackButtons;          //攻击按键列表
     public List<AAttackMode> playerAttackModes; //玩家攻击模块列表
     public AMoveMode playerMoveMode;            //玩家移动模块
     public AHitMode playerHitMode;              //玩家受伤模块
-    public float playerSize;                    //玩家判定大小（暂时没用，使用的胶囊形碰撞体）
+
+    [HideInInspector]
+    public List<ABuff> buffList;                //所有buff的列表
+    [HideInInspector]
+    public List<ABuff> buffRemoveList;          //当前要移除的buff列表
+    [HideInInspector]
+    public float playerAttackPoint;             //角色攻击力
+    [HideInInspector]
+    public float playerDefensePoint;            //角色防御力
     [HideInInspector]
     public bool isDead;                         //玩家角色是否死亡
     [HideInInspector]
     public bool isChanging;                     //玩家正在切换角色
     [HideInInspector]
     public bool isInvulnerable;                 //玩家角色是否无敌
-    
-
 
     // Use this for initialization
     void Awake()
     {
         buffList = new List<ABuff>();
+        buffRemoveList = new List<ABuff>();
     }
 
     // Update is called once per frame
@@ -57,10 +60,7 @@ public class PlayerControl : MonoBehaviour
         if (!isMainPlayer)
             return;
 
-        for (int i = 0; i < buffList.Count; i++)
-        {
-            buffList[i].OnBuffUpdate();
-        }
+        BuffUpdate();
         IsAlive();
         PlayerChange();
         ParameterCalculate();
@@ -79,6 +79,21 @@ public class PlayerControl : MonoBehaviour
         playerHitMode.Hit();
     }
 
+    //buff相关计算
+    private void BuffUpdate()
+    {
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].OnBuffUpdate();
+        }
+        if (buffRemoveList.Count != 0)
+        {
+            foreach (ABuff buff in buffRemoveList)
+            {
+                RemoveBuff(buff);
+            }
+        }
+    }
     //角色生死相关操作
     void IsAlive()
     {
