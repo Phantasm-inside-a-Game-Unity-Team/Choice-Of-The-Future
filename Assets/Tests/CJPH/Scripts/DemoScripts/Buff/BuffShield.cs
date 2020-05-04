@@ -60,7 +60,7 @@ public class BuffShield : ABuff
             else
             {
                 playerControl.shieldHP = shieldHP;
-                timerA = 0;
+                buffShield.timerA = 0;
             }
         }
         if (enemyControl != null)
@@ -77,7 +77,7 @@ public class BuffShield : ABuff
             else
             {
                 enemyControl.shieldHP = shieldHP;
-                timerA = 0;
+                buffShield.timerA = 0;
             }
         }
     }
@@ -88,14 +88,14 @@ public class BuffShield : ABuff
         {
             if (timerA > shieldTime || playerControl.shieldHP <= 0)
             {
-                OnBuffRemove();
+                playerControl.buffRemoveList.Add(this);
             }
         }
         if (enemyControl != null)
         {
             if (timerA > shieldTime || enemyControl.shieldHP <= 0)
             {
-                OnBuffRemove();
+                enemyControl.buffRemoveList.Add(this);
             }
         }
         timerA += Time.deltaTime;
@@ -105,13 +105,13 @@ public class BuffShield : ABuff
     {
         if (playerControl != null)
         {
-            playerControl.buffList.Remove(this);
             playerControl.shieldHP = 0;
+            playerControl.buffList.Remove(this);
         }
         if (enemyControl != null)
         {
-            enemyControl.buffList.Remove(this);
             enemyControl.shieldHP = 0;
+            enemyControl.buffList.Remove(this);
         }
         GameObject.Destroy(shieldPrefab);
     }

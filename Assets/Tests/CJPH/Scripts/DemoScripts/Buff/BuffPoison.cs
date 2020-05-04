@@ -51,10 +51,10 @@ public class BuffPoison : ABuff
     {
         if (playerControl != null)
         {
-            playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
             BuffPoison buffPoison = (BuffPoison)playerControl.buffList.Find((ABuff buff) => buff.buffType == BuffType.Poison);
             if (buffPoison == null)
             {
+                playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
                 playerControl.buffList.Add(this);
             }
             else
@@ -64,10 +64,10 @@ public class BuffPoison : ABuff
         }
         if (enemyControl != null)
         {
-            enemyControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
             BuffPoison buffPoison = (BuffPoison)enemyControl.buffList.Find((ABuff buff) => buff.buffType == BuffType.Poison);
             if (buffPoison == null)
             {
+                enemyControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
                 enemyControl.buffList.Add(this);
             }
             else
@@ -81,21 +81,25 @@ public class BuffPoison : ABuff
     {
         if (timerA < buffTime)
         {
-            if (timerB > effectGapTime)
+            if (playerControl != null)
             {
-                if (playerControl != null)
+                playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
+                if (timerB > effectGapTime)
                 {
                     playerControl.playerHP -= minusHP;
                     Debug.Log("PlayerHP-" + minusHP);
-                    playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
+                    timerB = 0;
                 }
-                if (enemyControl != null)
+            }
+            if (enemyControl != null)
+            {
+                enemyControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
+                if (timerB > effectGapTime)
                 {
                     enemyControl.enemyHP -= minusHP;
                     Debug.Log("EnemyHP-" + minusHP);
-                    enemyControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
+                    timerB = 0;
                 }
-                timerB = 0;
             }
             timerB += Time.deltaTime;
             timerA += Time.deltaTime;
@@ -104,11 +108,11 @@ public class BuffPoison : ABuff
         {
             if (playerControl != null)
             {
-                OnBuffRemove();
+                playerControl.buffRemoveList.Add(this);
             }
             if (enemyControl != null)
             {
-                OnBuffRemove();
+                enemyControl.buffRemoveList.Add(this);
             }
         }
     }

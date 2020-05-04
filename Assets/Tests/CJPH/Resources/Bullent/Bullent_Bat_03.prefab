@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6206186041567612485}
   - component: {fileID: 50117434304083394}
   m_Layer: 9
-  m_Name: Bullent_Bat_01
+  m_Name: Bullent_Bat_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 734e783085635aa4da2d9685cdc75509, type: 3}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,11 +103,10 @@ MonoBehaviour:
   bullentSize: 0.15
   hitEffect: {fileID: 0}
   effect: 0
-  thisBuffType: 0
+  thisBuffType: 3
   thisBuffPara:
-  - 5
-  - 0.1
-  - 1
+  - 2
+  - 0.5
 --- !u!58 &6206186041567612485
 CircleCollider2D:
   m_ObjectHideFlags: 0

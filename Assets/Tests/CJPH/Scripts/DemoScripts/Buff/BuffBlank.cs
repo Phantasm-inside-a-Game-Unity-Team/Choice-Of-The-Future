@@ -21,11 +21,11 @@ public class BuffBlank : ABuff
     {
         if (playerControl != null)
         {
-            playerControl.RemoveBuff(this);
+            playerControl.buffRemoveList.Add(this);
         }
         if (enemyControl != null)
         {
-            enemyControl.RemoveBuff(this);
+            enemyControl.buffRemoveList.Add(this);
         }
     }
 
@@ -36,6 +36,13 @@ public class BuffBlank : ABuff
 
     public override void OnBuffRemove()
     {
-        
+        if (playerControl != null)
+        {
+            playerControl.buffList.Remove(this);
+        }
+        if (enemyControl != null)
+        {
+            enemyControl.buffList.Remove(this);
+        }
     }
 }

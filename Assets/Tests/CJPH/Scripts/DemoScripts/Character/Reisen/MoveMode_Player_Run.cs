@@ -7,7 +7,7 @@ public class MoveMode_Player_Run : AMoveMode
     public PlayerControl playerControl; //角色控制器
     public Animator playerAnimator;     //角色动画机
     public Rigidbody2D rb;              //角色的刚体
-    public float dashSpeed;             //冲刺速度
+    public float dashSpeedScale;        //冲刺速度与移动速度的比值
     public float dashTime;              //冲刺持续时间
     float dashAvailableTime;            //剩余冲刺时间
     public float dashChargeTime;        //冲刺耗尽后的补充时间
@@ -47,7 +47,7 @@ public class MoveMode_Player_Run : AMoveMode
             if (Input.GetButton("Dash") && isWalk)
             {
                 playerAnimator.speed = 2;
-                rb.velocity = new Vector2(inputX * dashSpeed, inputY * dashSpeed);
+                rb.velocity = new Vector2(inputX * moveSpeed * dashSpeedScale, inputY * moveSpeed * dashSpeedScale);
                 dashAvailableTime -= Time.deltaTime;
             }
             else

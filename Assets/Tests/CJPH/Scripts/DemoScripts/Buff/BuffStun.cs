@@ -51,10 +51,10 @@ public class BuffStun : ABuff
                     attackMode.isCannotAttack = true;
                 }
                 playerControl.playerMoveMode.isCannontMove = true;
+                playerControl.GetComponent<Animator>().SetBool("isWalk", false);
                 stunPrefab = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Tests/CJPH/Resources/Stun/Stun.prefab", typeof(GameObject)));
                 stunPrefab.transform.parent = playerControl.transform;
                 stunPrefab.transform.localPosition = new Vector3(0, 0.5f, 0);
-                playerControl.GetComponent<Animator>().SetBool("isWalk", false);
             }
             else
             {
@@ -85,11 +85,11 @@ public class BuffStun : ABuff
         {
             if (playerControl != null)
             {
-                OnBuffRemove();
+                playerControl.buffRemoveList.Add(this);
             }
             if (enemyControl != null)
             {
-                OnBuffRemove();
+                enemyControl.buffRemoveList.Add(this);
             }
         }
         timerA += Time.deltaTime;
