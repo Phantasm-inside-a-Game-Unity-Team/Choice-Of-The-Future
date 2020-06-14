@@ -51,6 +51,7 @@ public class BuffFrozen : ABuff
                 playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.75f, 1);
                 playerControl.playerMoveMode.moveSpeed *= slowdownScale;
                 playerControl.buffList.Add(this);
+                timerA = 0;
             }
             else
             {

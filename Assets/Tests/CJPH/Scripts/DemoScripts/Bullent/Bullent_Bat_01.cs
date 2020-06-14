@@ -78,19 +78,12 @@ public class Bullent_Bat_01 : ABullent
         if (collider.gameObject.layer == 10)
         {
             PlayerControl playerControl = collider.gameObject.GetComponentInParent<PlayerControl>();
-            if (!playerControl.isInvulnerable)
+            buffList.Add(BuffGroup.CreateBuff(playerControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
+            foreach (ABuff buff in buffList)    //将所有buff加到角色上
             {
-                if (playerControl.shieldHP <= 0)
-                {
-                    buffList.Add(BuffGroup.CreateBuff(playerControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
-                    foreach (ABuff buff in buffList)    //将所有buff加到角色上
-                    {
-                        playerControl.AddBuff(buff);
-                    }
-                }
-
-                playerControl.playerHitMode.BeHit(attackPoint, effect);
+                playerControl.AddBuff(buff);
             }
+            playerControl.playerHitMode.BeHit(attackPoint, buffList, effect);
         }
         ObjectPoolManager.Instance.PutObject(gameObject);
     }

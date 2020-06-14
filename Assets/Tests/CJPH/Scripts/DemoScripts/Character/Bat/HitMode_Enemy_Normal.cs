@@ -22,10 +22,14 @@ public class HitMode_Enemy_Normal : AHitMode
         
     }
 
-    public override void BeHit(float atkPoint, int effect)
+    public override void BeHit(float atkPoint, List<ABuff> buffList, int effect)
     {
         float reducedHP = atkPoint - enemyControl.enemyDefensePoint;
         Debug.Log("enemyHP-" + reducedHP.ToString());
         enemyControl.enemyHP -= reducedHP;
+        foreach (ABuff buff in buffList)    //将所有buff加到角色上
+        {
+            enemyControl.AddBuff(buff);
+        }
     }
 }

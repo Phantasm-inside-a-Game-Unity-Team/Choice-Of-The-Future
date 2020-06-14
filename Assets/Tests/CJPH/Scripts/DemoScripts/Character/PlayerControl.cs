@@ -45,6 +45,8 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool isChanging;                     //玩家正在切换角色
     [HideInInspector]
+    public bool isHit;                          //玩家角色是否处于被攻击后的无敌硬直
+    [HideInInspector]
     public bool isInvulnerable;                 //玩家角色是否无敌
 
     // Use this for initialization
@@ -92,6 +94,7 @@ public class PlayerControl : MonoBehaviour
             {
                 RemoveBuff(buff);
             }
+            buffRemoveList.Clear();
         }
     }
     //角色生死相关操作
@@ -141,10 +144,9 @@ public class PlayerControl : MonoBehaviour
         GetComponent<CapsuleCollider2D>().enabled = true;
         isChanging = false;
         playerAnimator.SetBool("isChanging", false);
-        while (buffList.Count > 0)
-        {
-            RemoveBuff(buffList[0]);
-        }
+        isHit = false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        RemoveAllBuffs();
     }
     //没有残机时死亡
     void ManShenChuangYi()
@@ -204,6 +206,14 @@ public class PlayerControl : MonoBehaviour
         if (buffList.Contains(buff))
         {
             buff.OnBuffRemove();
+        }
+    }
+    //移除所有BUFF
+    public void RemoveAllBuffs()
+    {
+        while (buffList.Count > 0)
+        {
+            RemoveBuff(buffList[0]);
         }
     }
 

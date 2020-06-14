@@ -75,13 +75,8 @@ public class Bullent_Sakuya_01 : ABullent
         if (collider.gameObject.layer == 8)
         {
             EnemyControl enemyControl = collider.gameObject.GetComponent<EnemyControl>();
-            enemyControl.enemyHitMode.BeHit(attackPoint, effect);
-
             buffList.Add(BuffGroup.CreateBuff(enemyControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
-            foreach (ABuff buff in buffList)    //将所有buff加到角色上
-            {
-                enemyControl.AddBuff(buff);
-            }
+            enemyControl.enemyHitMode.BeHit(attackPoint, buffList, effect);
         }
         ObjectPoolManager.Instance.PutObject(gameObject);
     }

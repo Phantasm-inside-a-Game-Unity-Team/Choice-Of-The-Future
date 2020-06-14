@@ -16,6 +16,10 @@ public class Bullent_Sakuya_02 : ABullent
     //public List<GameObject> enemies;    //场景中敌人列表(暂未使用)
     public int effect;                  //攻击效果
 
+    public List<ABuff> buffList;        //弹幕上所有会触发的buff效果列表
+    public BuffType thisBuffType;       //弹幕初始自带的buff类型
+    public List<float> thisBuffPara;    //弹幕初始自带的buff参数
+
     // Use this for initialization
     void OnEnable()
     {
@@ -70,7 +74,9 @@ public class Bullent_Sakuya_02 : ABullent
     {
         if (collider.gameObject.layer == 8)
         {
-            collider.gameObject.GetComponent<EnemyControl>().enemyHitMode.BeHit(attackPoint,effect);
+            EnemyControl enemyControl = collider.gameObject.GetComponent<EnemyControl>();
+            buffList.Add(BuffGroup.CreateBuff(enemyControl, thisBuffType, thisBuffPara));  //将弹幕初始自带的buff加到整个buff列表中
+            enemyControl.enemyHitMode.BeHit(attackPoint, buffList, effect);
         }
     }
 }

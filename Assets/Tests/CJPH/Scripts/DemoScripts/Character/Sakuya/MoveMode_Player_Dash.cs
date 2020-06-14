@@ -10,12 +10,15 @@ public class MoveMode_Player_Dash : AMoveMode
     public float dashSpeed;             //冲刺速度
     public float dashTime;              //冲刺持续时间
     public float dashChargeTime;        //冲刺后摇
+    public float delayTime;             //硬直时间
+    public float delaySpeedRatio;       //硬直时移动速度与原速度的比值
 
-    bool isWalk;                        //角色是否移动中
-    float inputX;                       //左右按键
-    float inputY;                       //上下按键
-    bool isDash;                        //角色是否冲刺中
-    float dashStartTime;                //角色冲刺开始时间
+    private bool isWalk;                //角色是否移动中
+    private float inputX;               //左右按键
+    private float inputY;               //上下按键
+    private bool isDash;                //角色是否冲刺中
+    private float dashStartTime;        //角色冲刺开始时间
+    private float timerA;               //硬直计时器
 
     void Start()
     {
@@ -67,11 +70,13 @@ public class MoveMode_Player_Dash : AMoveMode
             playerAnimator.SetFloat("moveY", characterDirection.y);
         }
         rb.velocity = new Vector2(inputX * moveSpeed, inputY * moveSpeed);
+
+        //DelayTimer();
     }
 
     public override void IsDelayed()
     {
-        //硬直时的操作
+        
     }
 
     public override void SetDirection(Vector2 direction)
@@ -80,4 +85,7 @@ public class MoveMode_Player_Dash : AMoveMode
         playerAnimator.SetFloat("moveY", direction.y);
         characterDirection = direction;
     }
+
+
+
 }

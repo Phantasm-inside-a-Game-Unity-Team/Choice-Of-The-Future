@@ -86,8 +86,11 @@ public class BuffPoison : ABuff
                 playerControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
                 if (timerB > effectGapTime)
                 {
-                    playerControl.playerHP -= minusHP;
-                    Debug.Log("PlayerHP-" + minusHP);
+                    if (!playerControl.isInvulnerable)
+                    {
+                        playerControl.playerHP -= minusHP;
+                        Debug.Log("PlayerHP-" + minusHP);
+                    }
                     timerB = 0;
                 }
             }
@@ -96,8 +99,11 @@ public class BuffPoison : ABuff
                 enemyControl.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5882353f, 1, 0.3921569f);
                 if (timerB > effectGapTime)
                 {
-                    enemyControl.enemyHP -= minusHP;
-                    Debug.Log("EnemyHP-" + minusHP);
+                    if (!enemyControl.isInvulnerable)
+                    {
+                        enemyControl.enemyHP -= minusHP;
+                        Debug.Log("EnemyHP-" + minusHP);
+                    }
                     timerB = 0;
                 }
             }
