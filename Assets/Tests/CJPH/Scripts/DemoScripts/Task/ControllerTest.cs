@@ -19,15 +19,15 @@ public class ControllerTest : MonoBehaviour
     {
         if (GUILayout.Button("接受任务Task1"))
         {
-            mTaskManager.GetTask("T001");
+            mTaskManager.AcceptTask("T001");
         }
         if (GUILayout.Button("接受任务Task2"))
         {
-            mTaskManager.GetTask("T002");
+            mTaskManager.AcceptTask("T002");
         }
         if (GUILayout.Button("接受任务T003"))
         {
-            mTaskManager.GetTask("T003");
+            mTaskManager.AcceptTask("T003");
         }
         if (GUILayout.Button("打怪Enemy1"))
         {

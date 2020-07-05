@@ -48,7 +48,7 @@ public class TaskEvent
     //添加事件
     public void AddEventListen(TaskDelegate temp, int index)
     {
-        if (taskDelegateList[index] != null) return;
+        //if (taskDelegateList[index] != null) return;
         taskDelegateList[index] += temp;
     }
     //回调事件

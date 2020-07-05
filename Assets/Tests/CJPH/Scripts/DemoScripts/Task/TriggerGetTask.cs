@@ -21,7 +21,8 @@ public class TriggerGetTask : MonoBehaviour
             if (Input.GetButtonDown("Submit"))
             {
                 Debug.Log("Submit");
-                DemoTaskManager.Instance.GetTask(taskID);
+                DemoTaskManager.Instance.AcceptTask(taskID);
+                TaskEvent.Instance.AddEventListen(Reacceptable, (int)TaskEventType.OnFinishEvent);
             }
         }
     }
@@ -40,5 +41,12 @@ public class TriggerGetTask : MonoBehaviour
         {
             isPlayerIn = false;
         }
+    }
+
+    public void Reacceptable(TaskArgs e)
+    {
+        TaskArgs args = new TaskArgs();
+        args.taskID = taskID;
+        DemoTaskManager.Instance.RefreshTask(args);
     }
 }

@@ -7,6 +7,7 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
 {
     private Dictionary<string, Task> taskAllDic = new Dictionary<string, Task>();
     private Dictionary<string, Task> currentTaskDic = new Dictionary<string, Task>();
+    private List<string> removeTaskList = new List<string>();
     public TextAsset mTextAsset;
 
     private void Awake()
@@ -41,7 +42,7 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
     /// 接取任务
     /// </summary>
     /// <param name="args"></param>
-    public void GetTask(string taskID)
+    public void AcceptTask(string taskID)
     {
         if (currentTaskDic.ContainsKey(taskID))
         {
@@ -52,6 +53,11 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
         {
             Task t = GetTaskByID(taskID);
             if (t == null) return;
+            if (t.isFinish)
+            {
+                print(string.Format("{0},任务已经完成了", taskID));
+                return;
+            }
             currentTaskDic.Add(taskID, t);
             TaskArgs args = new TaskArgs();
             args.taskID = taskID;
@@ -69,6 +75,12 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
             UpdateCondition(item, args);
             CheckFinishTask(item, args);
         }
+        foreach (var taskID in removeTaskList)
+        {
+            Debug.Log(taskID);
+            currentTaskDic.Remove(taskID);
+        }
+        removeTaskList.Clear();
     }
     //更新数据
     private void UpdateCondition(KeyValuePair<string, Task> item, TaskArgs args)
@@ -102,12 +114,15 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
             tc = item.Value.taskConditions[i];
             if (!tc.isFinish) return;//只要是没有完成就返回
         }
+        item.Value.isFinish = true;
         FinishTask(args);
     }
     private void FinishTask(TaskArgs args)
     {
         //调用任务完成事件
+        Debug.Log("wancheng");
         TaskEvent.Instance.InvokeEvent((int)TaskEventType.OnFinishEvent, args);
+        removeTaskList.Add(args.taskID);
     }
     /// <summary>
     /// 获取任务奖励
@@ -135,6 +150,21 @@ public class DemoTaskManager : SingletonTemplate<DemoTaskManager>
         {
             TaskEvent.Instance.InvokeEvent((int)TaskEventType.OnCancelEvent, args);
             currentTaskDic.Remove(args.taskID);
+        }
+    }
+
+    public void RefreshTask(TaskArgs args)
+    {
+        Debug.Log("Refresh");
+        Task value;
+        if (taskAllDic.TryGetValue(args.taskID, out value))
+        {
+            value.isFinish = false;
+            for (int i = 0; i < value.taskConditions.Count; i++)
+            {
+                value.taskConditions[i].nowAmount = 0;
+                value.taskConditions[i].isFinish = false;
+            }
         }
     }
 }

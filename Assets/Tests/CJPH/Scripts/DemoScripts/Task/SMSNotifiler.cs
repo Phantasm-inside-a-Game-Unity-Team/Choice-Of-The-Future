@@ -20,6 +20,7 @@ public class SMSNotifiler : SingletonTemplate<SMSNotifiler>
     public void finishPrintInfo(TaskArgs e)
     {
         print("完成任务" + e.taskID);
+        //DemoTaskManager.Instance.RefreshTask(e);
     }
 
     public void rewardPrintInfo(TaskArgs e)
